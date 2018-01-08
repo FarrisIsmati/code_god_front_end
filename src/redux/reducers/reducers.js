@@ -5,6 +5,10 @@ import {
   INVALIDATE_USER
 }                             from "../constants/constants"
 
+const default_state = {
+  activeUser: false
+}
+
 function user(
   state = {
     isFetching: false,
@@ -27,6 +31,7 @@ function user(
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
+        activeUser: true,
         user: action.payload.user,
         lastUpdated: action.payload.receivedAt
       })
@@ -35,7 +40,7 @@ function user(
   }
 }
 
-function getUser(state = {}, action) {
+function getUser(state = default_state, action) {
   switch (action.type) {
     case INVALIDATE_USER:
     case RECEIVE_USER:

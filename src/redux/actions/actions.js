@@ -21,10 +21,10 @@ function requestUser(userId) {
 }
 
 function receiveUser(json) {
-  console.log(json)
   return {
     type: RECEIVE_USER,
     payload: {
+      activeUser: true,
       user: json,
       receivedAt: Date.now()
     }
@@ -45,7 +45,7 @@ function fetchUserData(userId) {
 }
 
 function shouldFetchUserData(state) {
-  const user = state.userData.googleId
+  const user = state.userData.activeUser
   if (!user) {
     return true
   } else if (user.isFetching) {
