@@ -1,1 +1,3 @@
-export const GET_TOPICS = 'GET_TOPICS'
+export const REQUEST_USER = 'REQUEST_USER'
+export const RECEIVE_USER = 'RECIEVE_USER'
+export const INVALIDATE_USER = 'INVALIDATE_USER'
