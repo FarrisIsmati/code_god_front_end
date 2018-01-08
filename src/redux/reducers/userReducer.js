@@ -1,4 +1,3 @@
-import { combineReducers }    from 'redux'
 import {
   REQUEST_USER,
   RECEIVE_USER,
@@ -40,7 +39,7 @@ function user(
   }
 }
 
-function getUser(state = default_state, action) {
+export default function getUser(state = default_state, action) {
   switch (action.type) {
     case INVALIDATE_USER:
     case RECEIVE_USER:
@@ -52,9 +51,3 @@ function getUser(state = default_state, action) {
       return state
   }
 }
-
-const rootReducer = combineReducers({
-  userData: getUser
-})
-
-export default rootReducer

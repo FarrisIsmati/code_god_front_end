@@ -7,23 +7,23 @@ import { createStore,
        }                    from 'redux'
 
 import Root                 from './components/structure/Root'
-import rootReducer          from './redux/reducers/reducers'
+import rootReducer          from './redux/reducers/rootReducer'
 
-import { fetchUserDataIfNeeded }        from "./redux/actions/actions"
+import { fetchUserDataIfNeeded }        from "./redux/actions/userActions"
 
 const loggerMiddleware = createLogger()
 
 const store = createStore(
   rootReducer,
   applyMiddleware(
-    thunkMiddleware, // lets us dispatch() functions
-    loggerMiddleware // neat middleware that logs actions
+    thunkMiddleware,
+    loggerMiddleware
   )
 )
 
-console.log(store.getState())
 store.subscribe(() => console.log(store.getState()))
 
+//Log user in if needed (Once user is logged in have access to all their data)
 store.dispatch(fetchUserDataIfNeeded('K12321slx'))
 
 ReactDOM.render(

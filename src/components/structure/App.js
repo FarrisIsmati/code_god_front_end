@@ -1,7 +1,17 @@
 import React           from 'react'
+import {
+  Route,
+  Switch,
+  withRouter
+}                      from "react-router-dom"
+
+import loginContainer  from "../login/loginContainer"
 
 const App = () => (
-  <div>hi</div>
+  <Switch>
+    <Route exact path="/" component={loginContainer} />
+    <Route exact path="/:username" component={loginContainer} />
+  </Switch>
 )
 
-export default App
+export default withRouter(App)
