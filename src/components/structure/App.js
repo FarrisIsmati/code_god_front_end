@@ -10,7 +10,6 @@ import loginContainer  from "../login/loginContainer"
 const App = () => (
   <Switch>
     <Route exact path="/" component={loginContainer} />
-    <Route exact path="/:username" component={loginContainer} />
   </Switch>
 )
 

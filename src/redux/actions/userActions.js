@@ -5,17 +5,17 @@ import {
   INVALIDATE_USER
 }                          from "../constants/constants"
 
-export function invalidateUser(userId) {
+export function invalidateUser(token) {
   return {
     type: INVALIDATE_USER,
-    userId
+    token
   }
 }
 
-function requestUser(userId) {
+function requestUser(token) {
   return {
     type: REQUEST_USER,
-    userId
+    token
   }
 }
 
@@ -30,10 +30,11 @@ function receiveUser(json) {
   }
 }
 
-function fetchUserData(userId) {
+function fetchUserData(token) {
   return function (dispatch) {
-    dispatch(requestUser(userId))
-    return fetch(`http://localhost:3001/data/user/` + userId)
+    dispatch(requestUser(token))
+    console.log(localStorage)
+    return fetch(`http://localhost:3001/data/user/` + token)
       .then(
         response => response.json(),
         error => console.log('An error occurred.', error)
@@ -55,10 +56,10 @@ function shouldFetchUserData(state) {
   }
 }
 
-export function fetchUserDataIfNeeded(userId) {
+export function fetchUserDataIfNeeded(token) {
   return (dispatch, getState) => {
     if (shouldFetchUserData(getState())) {
-      return dispatch(fetchUserData(userId))
+      return dispatch(fetchUserData(token))
     } else {
       return Promise.resolve()
     }
