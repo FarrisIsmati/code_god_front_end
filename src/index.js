@@ -24,7 +24,7 @@ const store = createStore(
 store.subscribe(() => console.log(store.getState()))
 
 //Log user in if needed (Once user is logged in have access to all their data)
-store.dispatch(fetchUserDataIfNeeded('K12321slx'))
+//store.dispatch(fetchUserDataIfNeeded('K12321slx'))
 
 ReactDOM.render(
   <Root store={store} />,
