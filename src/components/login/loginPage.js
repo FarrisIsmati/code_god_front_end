@@ -3,10 +3,10 @@ import GoogleLogin     from 'react-google-login'
 
 import PropTypes       from 'prop-types'
 
-const LoginPage = ({response, getUserData, logUserOut}) => (
+const LoginPage = ({response, getUserData }) => (
   <div>
     <div className="title-holder">
-      <h1 onClick={logUserOut}>codeGod;</h1>
+      <h1>codeGod;</h1>
       <h2>be the master of your domain</h2>
       <div className="oauth-holder">
         <GoogleLogin
