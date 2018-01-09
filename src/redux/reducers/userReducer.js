@@ -1,7 +1,8 @@
 import {
   REQUEST_USER,
   RECEIVE_USER,
-  INVALIDATE_USER
+  INVALIDATE_USER,
+  LOGOUT_USER
 }                             from "../constants/constants"
 
 const default_state = {
@@ -39,13 +40,17 @@ function user(
   }
 }
 
-export default function getUser(state = default_state, action) {
+export function userReducer(state = default_state, action) {
   switch (action.type) {
     case INVALIDATE_USER:
     case RECEIVE_USER:
     case REQUEST_USER:
       return {
         ...state, ...user(state[action.userId], action)
+      }
+    case LOGOUT_USER:
+      return {
+        ...action.payload
       }
     default:
       return state

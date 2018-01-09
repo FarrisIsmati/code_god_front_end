@@ -9,8 +9,6 @@ import { createStore,
 import Root                 from './components/structure/Root'
 import rootReducer          from './redux/reducers/rootReducer'
 
-//import { fetchUserDataIfNeeded }        from "./redux/actions/userActions"
-
 const loggerMiddleware = createLogger()
 
 const store = createStore(
@@ -22,9 +20,6 @@ const store = createStore(
 )
 
 store.subscribe(() => console.log(store.getState()))
-
-//Log user in if needed (Once user is logged in have access to all their data)
-// store.dispatch(fetchUserDataIfNeeded(``))
 
 ReactDOM.render(
   <Root store={store} />,

@@ -8,9 +8,11 @@ import {
 import loginContainer  from "../login/loginContainer"
 
 const App = () => (
-  <Switch>
-    <Route exact path="/" component={loginContainer} />
-  </Switch>
+  <div>
+    <Switch>
+      <Route exact path="/" component={loginContainer} />
+    </Switch>
+  </div>
 )
 
 export default withRouter(App)

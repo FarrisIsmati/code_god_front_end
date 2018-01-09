@@ -1,7 +1,7 @@
 import { connect }                from 'react-redux'
 import axios                      from 'axios'
 
-import { fetchUserDataIfNeeded }  from "../../redux/actions/userActions"
+import { fetchUserDataIfNeeded, logoutUser }             from "../../redux/actions/userActions"
 
 import LoginPage                  from './loginPage.js'
 
@@ -11,17 +11,16 @@ const updateUser = (googleId, email, dispatch) => {
     username: email
   })
   .then((response) => {
-    dispatch(fetchUserDataIfNeeded(localStorage.userToken))
+    dispatch(localStorage.userToken)
   })
   .catch((err) => console.log(err))
 }
 
-const responseGoogle = (res) => {
+const responseGoogle = (res, dispatch) => {
   axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=` + res.tokenId)
   .then((response) => {
-    localStorage.clear()
     localStorage.setItem('userToken', res.tokenId)
-    updateUser(response.data.sub, response.data.email)
+    updateUser(response.data.sub, response.data.email, dispatch)
   })
   .catch((err) => console.log(err))
 }
@@ -30,6 +29,17 @@ const mapStateToProps = () => ({
   response: responseGoogle
 })
 
-const LoginContainer = connect(mapStateToProps)(LoginPage)
+const mapDispatchToProps = (dispatch) => {
+    return {
+      getUserData: token => {
+        dispatch(fetchUserDataIfNeeded(token))
+      },
+      logUserOut: () => {
+        dispatch(logoutUser())
+      }
+  }
+}
+
+const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginPage)
 
 export default LoginContainer

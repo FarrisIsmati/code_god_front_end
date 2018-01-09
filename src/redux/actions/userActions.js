@@ -2,13 +2,27 @@ import fetch               from 'cross-fetch'
 import {
   REQUEST_USER,
   RECEIVE_USER,
-  INVALIDATE_USER
+  INVALIDATE_USER,
+  LOGOUT_USER
 }                          from "../constants/constants"
 
 export function invalidateUser(token) {
   return {
     type: INVALIDATE_USER,
     token
+  }
+}
+
+export function logoutUser() {
+  return {
+    type: LOGOUT_USER,
+    payload: {
+      activeUser: false,
+      user: {},
+      loggedOutAt: Date.now(),
+      isFetching: false,
+      didInvalidate: false
+    }
   }
 }
 
