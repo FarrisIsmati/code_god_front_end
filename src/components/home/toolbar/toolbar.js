@@ -21,7 +21,9 @@ class Toolbar extends  Component {
 
     render(){
       const dropDownItems = this.props.user.activeUser ?
-      this.props.user.topics.map((topic,i) => {return (<MenuItem eventKey={String(i)} key={i} onClick={() => {this.toggleModalAdd(); this.toggleTopic(i)}}>{topic.name}</MenuItem>)}) :
+      this.props.user.topics.filter((topic)=>{
+        return !topic.show
+      }).map((topic,i) => {return (<MenuItem eventKey={String(i)} key={i} onClick={() => {this.toggleModalAdd(); this.toggleTopic(i)}}>{topic.name}</MenuItem>)}) :
       null
 
       return(

@@ -45,7 +45,6 @@ export function userReducer(state = default_state, action) {
           }
         }
       )
-
       return {
         ...state, ...newData
       }
