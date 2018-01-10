@@ -38,7 +38,6 @@ function receiveUser(json) {
 function fetchUserData(token) {
   return function (dispatch) {
     dispatch(requestUser(token))
-    console.log(localStorage)
     return fetch(`http://localhost:3001/data/user/` + token)
       .then(
         response => response.json(),

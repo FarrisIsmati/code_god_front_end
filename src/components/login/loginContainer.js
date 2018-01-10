@@ -1,3 +1,5 @@
+import React, {Component}         from 'react'
+
 import { connect }                from 'react-redux'
 import axios                      from 'axios'
 
@@ -5,28 +7,51 @@ import { fetchUserDataIfNeeded }             from "../../redux/actions/userActio
 
 import LoginPage                  from './loginPage.js'
 
-const updateUser = (googleId, email, dispatch, changeRoute) => {
-  axios.post(`http://localhost:3001/auth/google`, {
-    googleId: googleId,
-    username: email
-  })
-  .then((response) => {
-    dispatch(localStorage.userToken)
-  })
-  .catch((err) => console.log(err))
+class LoginContainer extends Component{
+  constructor(props) {
+    super(props)
+    const { getUserData } = this.props
+
+    this.getUserData = getUserData.bind(this)
+    this.responseGoogle = this.responseGoogle.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount(){
+    if (localStorage.userToken){
+      this.getUserData(localStorage.userToken)
+    }
+  }
+
+  updateUser(googleId, email) {
+    axios.post(`http://localhost:3001/auth/google`, {
+      googleId: googleId,
+      username: email
+    })
+    .then((response) => {
+      this.getUserData(localStorage.userToken)
+    })
+    .catch((err) => {console.log(err)})
+  }
+
+  responseGoogle(res) {
+    axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=` + res.tokenId)
+    .then((response) => {
+      localStorage.setItem('userToken', res.tokenId)
+      this.updateUser(response.data.sub, response.data.email)
+    })
+    .catch((err) => {console.log(err)})
+  }
+
+  render(){
+    return(
+      <Login response={(res) => {this.responseGoogle(res)}}/>
+    )
+  }
 }
 
-const responseGoogle = (res, dispatch, changeRoute) => {
-  axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=` + res.tokenId)
-  .then((response) => {
-    localStorage.setItem('userToken', res.tokenId)
-    updateUser(response.data.sub, response.data.email, dispatch, changeRoute)
-  })
-  .catch((err) => console.log(err))
-}
-
-const mapStateToProps = () => ({
-  response: responseGoogle
+const mapStateToProps = (state) => ({
+  user: state.userData,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -36,10 +61,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         .then(() => {
           ownProps.history.push('/home')
         })
+        .catch((err) => {console.log(err)})
       }
   }
 }
 
-const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginPage)
-
-export default LoginContainer
+const Login = connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

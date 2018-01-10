@@ -1,8 +1,19 @@
 import React           from 'react'
 
-const Nav = ({user}) => (
-  <div>
-    <p onClick={()=>{console.log(user)}} >Navbar</p>
+import '../../../stylesheets/flex.css'
+import '../../../stylesheets/nav.css'
+
+const Nav = ({user, logout}) => (
+  <div className="flex nav-container">
+    <h2>codeGod;</h2>
+    <div className="flex">
+      {
+        user.activeUser ?
+        <p>{user.user.username}</p>:
+        null
+      }
+      <p onClick={logout}>log out</p>
+    </div>
   </div>
 )
 

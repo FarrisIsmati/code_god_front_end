@@ -1,15 +1,23 @@
 import React, {Component}         from 'react'
-import axios                      from 'axios'
 
 import { connect }                from 'react-redux'
 
-import { fetchUserDataIfNeeded }  from "../../redux/actions/userActions"
-
+import { fetchUserDataIfNeeded,
+         logoutUser }             from "../../redux/actions/userActions"
 import Nav                        from './nav/nav.js'
+import '../../stylesheets/home.css'
+import '../../stylesheets/flex.css'
 
 class HomeContainer extends Component{
+  constructor(props){
+    super(props)
+    const { logUserOut } =  this.props
+
+    this.logUserOut = logUserOut.bind(this)
+  }
+
   componentDidMount(){
-    const { user, history, getUserData } = this.props
+    const { history, getUserData } = this.props
     if (localStorage.userToken) {
       getUserData(localStorage.userToken)
     } else {
@@ -20,8 +28,8 @@ class HomeContainer extends Component{
 
   render(){
     return(
-      <div>
-        <Navbar />
+      <div className="grid-home">
+        <Navbar logout={this.logUserOut}/>
         <p>Welcome Everyone</p>
       </div>
     )
@@ -29,7 +37,7 @@ class HomeContainer extends Component{
 }
 
 const mapStateToProps = (state) => ({
-  user: state
+  user: state.userData
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -40,13 +48,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           console.log('Token Validated')
         })
         .catch(() => {
+          localStorage.clear()
           console.log('Invalid Token')
           ownProps.history.push('/')
         })
+      },
+      logUserOut: () => {
+        dispatch(logoutUser())
+        localStorage.clear()
+        ownProps.history.push('/')
       }
   }
 }
 
-const Navbar = connect(mapStateToProps)(Nav)
+const Navbar = connect(mapStateToProps, mapDispatchToProps)(Nav)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

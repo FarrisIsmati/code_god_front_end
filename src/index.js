@@ -9,6 +9,8 @@ import { createStore,
 import Root                 from './components/structure/Root'
 import rootReducer          from './redux/reducers/rootReducer'
 
+import './stylesheets/index.css'
+
 const loggerMiddleware = createLogger()
 
 const store = createStore(
@@ -22,6 +24,6 @@ const store = createStore(
 store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
-  <Root store={store} />,
+  <Root className="full-height" store={store} />,
   document.getElementById('root')
 )
