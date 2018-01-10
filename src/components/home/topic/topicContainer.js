@@ -1,10 +1,14 @@
 import React, {Component}         from 'react'
 
-import { toggleModalAdd }         from "../../../redux/actions/uiActions"
-import { toggleTopic }            from "../../../redux/actions/userActions"
+import { toggleModalAdd,
+         toggleModalCreate
+       }                          from "../../../redux/actions/uiActions"
+import { toggleTopic,
+         addTopic
+       }                          from "../../../redux/actions/userActions"
 import { connect }                from 'react-redux'
 
-import topic                     from './topic.js'
+import topic                      from './topic.js'
 import toolbar                    from '../toolbar/toolbar.js'
 
 class TopicContainer extends Component{
@@ -42,12 +46,19 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
     toggleModalAdd: ()=>{
       dispatch(toggleModalAdd())
     },
+    toggleModalCreate: ()=>{
+      dispatch(toggleModalCreate())
+    },
     toggleTopic: (index)=>{
       dispatch(toggleTopic(index))
+    },
+    addTopic: (name, token)=>{
+      dispatch(addTopic(name, token))
     }
   }
 }

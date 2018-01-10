@@ -3,7 +3,8 @@ import {
   REQUEST_USER,
   RECEIVE_USER,
   LOGOUT_USER,
-  TOGGLE_TOPIC
+  TOGGLE_TOPIC,
+  ADD_TOPIC
 }                             from "../constants/constants"
 
 const default_state = {
@@ -37,6 +38,11 @@ function user(
 
 export function userReducer(state = default_state, action) {
   switch (action.type) {
+    case ADD_TOPIC:
+      console.log('GREAT SUCCESS')
+      return {
+        ...state
+      }
     case TOGGLE_TOPIC:
       const newData = update(state,
         {topics:

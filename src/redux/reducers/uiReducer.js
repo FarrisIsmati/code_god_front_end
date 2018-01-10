@@ -1,5 +1,6 @@
 import {
-  TOGGLE_MODAL_ADD
+  TOGGLE_MODAL_ADD,
+  TOGGLE_MODAL_CREATE
 }                          from "../constants/constants"
 
 const default_state = {
@@ -12,6 +13,10 @@ export function uiReducer(state = default_state, action) {
     case TOGGLE_MODAL_ADD:
       return {
         ...state, ...{modalAddShow: !state.modalAddShow}
+      }
+    case TOGGLE_MODAL_CREATE:
+      return {
+        ...state, ...{modalCreateShow: !state.modalCreateShow}
       }
     default:
       return state

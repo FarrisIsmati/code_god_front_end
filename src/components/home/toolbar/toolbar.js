@@ -1,7 +1,10 @@
 import React, { Component }           from 'react'
 import { Modal,
          DropdownButton,
-         MenuItem
+         Button,
+         MenuItem,
+         FormControl,
+         ControlLabel
        }                              from 'react-bootstrap'
 
 import '../../../stylesheets/flex.css'
@@ -10,13 +13,18 @@ import '../../../stylesheets/toolbar.css'
 class Toolbar extends  Component {
     constructor(props) {
       super(props)
-      const { toggleModalAdd, toggleTopic } = this.props
+      const { toggleModalAdd, toggleModalCreate, toggleTopic, addTopic } = this.props
 
+      this.addTopic = addTopic.bind(this)
       this.toggleTopic = toggleTopic.bind(this)
+      this.toggleModalCreate = toggleModalCreate.bind(this)
       this.toggleModalAdd = toggleModalAdd.bind(this)
+      this.createTopic = this.createTopic.bind(this)
     }
 
-    componentDidUpdate(){
+    createTopic(e) {
+      e.preventDefault()
+      this.addTopic(e.target[0].value, localStorage.userToken)
     }
 
     render(){
@@ -46,8 +54,24 @@ class Toolbar extends  Component {
             </Modal.Body>
           </Modal>
 
+          <Modal show={this.props.ui.modalCreateShow}>
+            <Modal.Header closeButton onClick={this.toggleModalCreate}>
+              <Modal.Title>Create Topic</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form onSubmit={(e) => {this.createTopic(e); this.toggleModalCreate()}}>
+                <ControlLabel>Working example with validation</ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Enter text"
+                  />
+                <Button type="submit">Submit</Button>
+              </form>
+            </Modal.Body>
+          </Modal>
+
           <p onClick={this.toggleModalAdd}>Add</p>
-          <p>Create</p>
+          <p onClick={this.toggleModalCreate}>Create</p>
         </div>
       )
     }

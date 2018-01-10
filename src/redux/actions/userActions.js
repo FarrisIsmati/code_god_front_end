@@ -1,10 +1,30 @@
 import fetch               from 'cross-fetch'
+import axios               from 'axios'
 import {
   REQUEST_USER,
   RECEIVE_USER,
   LOGOUT_USER,
-  TOGGLE_TOPIC
+  TOGGLE_TOPIC,
+  ADD_TOPIC
 }                          from "../constants/constants"
+
+function addTopicState(json) {
+  return {
+    type: ADD_TOPIC,
+    json
+  }
+}
+
+export function addTopic(name, token) {
+  return function(dispatch){
+    axios.post('http://localhost:3001/data/user/topic/' + token,{
+      "name": name
+    })
+    .then((json)=>{
+      dispatch(addTopicState(json))
+    })
+  }
+}
 
 export function toggleTopic(index) {
   return {
