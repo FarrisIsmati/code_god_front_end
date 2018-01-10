@@ -2,8 +2,18 @@ import fetch               from 'cross-fetch'
 import {
   REQUEST_USER,
   RECEIVE_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  TOGGLE_TOPIC
 }                          from "../constants/constants"
+
+export function toggleTopic(index) {
+  return {
+    type: TOGGLE_TOPIC,
+    payload: {
+      index
+    }
+  }
+}
 
 export function logoutUser() {
   return {
@@ -25,7 +35,7 @@ function requestUser(token) {
   }
 }
 
-function receiveUser(json) {
+function receiveUser(json, normalize) {
   return {
     type: RECEIVE_USER,
     payload: {

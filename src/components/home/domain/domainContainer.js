@@ -1,6 +1,7 @@
 import React, {Component}         from 'react'
 
 import { toggleModalAdd }         from "../../../redux/actions/uiActions"
+import { toggleTopic }            from "../../../redux/actions/userActions"
 import { connect }                from 'react-redux'
 
 import Domain                     from './domain.js'
@@ -33,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleModalAdd: ()=>{
       dispatch(toggleModalAdd())
+    },
+    toggleTopic: (index)=>{
+      dispatch(toggleTopic(index))
     }
   }
 }
