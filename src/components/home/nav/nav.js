@@ -9,7 +9,7 @@ const Nav = ({user, logout}) => (
     <div className="flex">
       {
         user.activeUser ?
-        <p>{user.user.username}</p>:
+        <p>{user.username}</p>:
         null
       }
       <p onClick={logout}>log out</p>

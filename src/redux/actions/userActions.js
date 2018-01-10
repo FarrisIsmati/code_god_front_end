@@ -10,7 +10,8 @@ export function logoutUser() {
     type: LOGOUT_USER,
     payload: {
       activeUser: false,
-      user: {},
+      googleId: '',
+      username: '',
       loggedOutAt: Date.now(),
       isFetching: false
     }

@@ -5,6 +5,8 @@ import { connect }                from 'react-redux'
 import { fetchUserDataIfNeeded,
          logoutUser }             from "../../redux/actions/userActions"
 import Nav                        from './nav/nav.js'
+import DomainContainer            from './domain/domainContainer.js'
+
 import '../../stylesheets/home.css'
 import '../../stylesheets/flex.css'
 
@@ -30,7 +32,7 @@ class HomeContainer extends Component{
     return(
       <div className="grid-home">
         <Navbar logout={this.logUserOut}/>
-        <p>Welcome Everyone</p>
+        <Domain />
       </div>
     )
   }
@@ -62,5 +64,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Navbar = connect(mapStateToProps, mapDispatchToProps)(Nav)
+const Domain = connect(mapStateToProps, mapDispatchToProps)(DomainContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

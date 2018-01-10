@@ -11,7 +11,6 @@ const default_state = {
 function user(
   state = {
     isFetching: false,
-    user: {}
   },
   action
 ) {
@@ -24,7 +23,8 @@ function user(
       return Object.assign({}, state, {
         isFetching: false,
         activeUser: true,
-        user: action.payload.user,
+        username: action.payload.user.username,
+        googleId: action.payload.user.googleId,
         lastUpdated: action.payload.receivedAt
       })
     default:
