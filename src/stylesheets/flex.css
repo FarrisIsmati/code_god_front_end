@@ -6,7 +6,11 @@
   flex-direction: column;
 }
 
+.flex-spacebetween{
+  justify-content: space-between;
+}
+
 .flex-center{
   justify-content: center;
-  align-items: center
+  align-items: center;
 }

@@ -1,6 +1,18 @@
-.topic-container {
+.topics-holder {
   height: 100%;
-  background-color: rgb(220, 220, 220);
+}
+
+.topic-holder {
+
+}
+
+.topic-header-holder {
+  background-color: red;
+  padding: 10px 5% 10px 5%;
+}
+
+.topic-header-holder h2{
+  color: #3d3d3f;
 }
 
 .topic-grid{

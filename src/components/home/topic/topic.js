@@ -20,7 +20,7 @@ const Topic = ({topic, state, pairity}) => {
     }
   }
   return(
-    <div style={{backgroundColor: backgroundColor()}}>
+    <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
       <TopicHeader topic={topic} state={state} pairity={pairity}/>
     </div>
   )

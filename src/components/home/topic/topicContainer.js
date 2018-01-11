@@ -19,11 +19,14 @@ class TopicContainer extends Component{
   }
 
   updateGridColumns() {
-    let length = this.props.user.activeUser ? this.props.user.topics.filter((topic)=>{
+    let percentage
+    const length = this.props.user.activeUser ? this.props.user.topics.filter((topic)=>{
       return topic.show
     }).length : 0
 
-    let grids = ('auto ').repeat(length)
+    100/length > 100 ? percentage = '0%' : percentage = String(100/length) + '% '
+
+    let grids = (percentage).repeat(length)
     return {
       width: '100%',
       display: 'grid',
@@ -45,7 +48,7 @@ class TopicContainer extends Component{
     }) : null
 
     return(
-      <div className="flex topic-container">
+      <div className="flex topics-holder">
         <div style={this.updateGridColumns()}>
           {
             topics ?

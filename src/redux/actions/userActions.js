@@ -1,6 +1,6 @@
 import fetch               from 'cross-fetch'
 import axios               from 'axios'
-import update              from 'immutability-helper'
+
 import {
   REQUEST_USER,
   RECEIVE_USER,
@@ -8,6 +8,7 @@ import {
   TOGGLE_TOPIC,
   ADD_TOPIC
 }                          from "../constants/constants"
+import { modifyTopic }     from './helpers.js'
 
 //Creating a new Topic
 function addTopicState(json) {
@@ -38,34 +39,7 @@ function toggleTopicState(topicShowState) {
 
 export function toggleTopic(id, token, state) {
   return function(dispatch){
-    //Toggles topics state to show on or off
-    let topicShowState
-    const index = state.topics.findIndex((topic)=>{
-      return topic._id == id
-    })
-    //If topic is off remove topic from array and add it to end of the list of topics
-    if (!state.topics[index].show){
-      let tempTopic = Object.assign({}, state.topics[index])
-      tempTopic.show = true
-      const spliced = update(state,
-        {topics:
-          { $splice: [[index, 1]] }
-        }
-      )
-      topicShowState = update(spliced,
-        {topics:
-          { $push: [tempTopic]}
-        })
-    } else {
-      topicShowState = update(state,
-        {topics:
-          {[index]:
-            { show: (val)=>{return val?false:true} }
-          }
-        }
-      )
-    }
-    console.log(topicShowState.topics)
+    const topicShowState = modifyTopic(state, id)
     axios.put('http://localhost:3001/data/user/topics/' + token, topicShowState.topics)
     .then(()=>{
       dispatch(toggleTopicState(topicShowState))
