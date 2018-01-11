@@ -40,7 +40,7 @@ class TopicContainer extends Component{
       return topic.show
     }).map((topic, i)=>{
       return(
-        <Topic topic={topic} key={i}/>
+        <Topic topic={topic} key={i} pairity={i}/>
       )
     }) : null
 

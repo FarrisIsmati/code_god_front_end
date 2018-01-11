@@ -26,12 +26,10 @@ export function addTopic(name, token) {
   }
 }
 
-export function toggleTopic(index) {
+export function toggleTopic(id) {
   return {
     type: TOGGLE_TOPIC,
-    payload: {
-      index
-    }
+    id
   }
 }
 

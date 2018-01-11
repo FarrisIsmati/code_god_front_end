@@ -32,7 +32,7 @@ class HomeContainer extends Component{
     return(
       <div className="grid-home">
         <Navbar logout={this.logUserOut}/>
-        <Topic />
+        <Topics />
       </div>
     )
   }
@@ -64,6 +64,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Navbar = connect(mapStateToProps, mapDispatchToProps)(Nav)
-const Topic = connect(mapStateToProps, mapDispatchToProps)(TopicContainer)
+const Topics = connect(mapStateToProps, mapDispatchToProps)(TopicContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
