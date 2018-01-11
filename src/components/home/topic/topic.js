@@ -1,9 +1,16 @@
 import React              from 'react'
 
-import { toggleTopic }    from "../../../redux/actions/userActions"
+import {
+        toggleTopic,
+        addSubtopic
+       }                  from "../../../redux/actions/userActions"
+import {
+        toggleModalCreateSubtopic
+       }                  from "../../../redux/actions/uiActions"
 
 import { connect }        from 'react-redux'
 
+import subtopics          from './subtopic.js'
 import topicHeader        from './topicHeader.js'
 
 import '../../../stylesheets/flex.css'
@@ -22,22 +29,31 @@ const Topic = ({topic, state, pairity}) => {
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
       <TopicHeader topic={topic} state={state} pairity={pairity}/>
+      <Subtopics subtopics={topic.subtopics}/>
     </div>
   )
 }
 
 const mapStateToProps = (state) => ({
-  user: state.userData
+  user: state.userData,
+  ui: state.uiState
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleTopic: (id, token, state)=>{
       dispatch(toggleTopic(id, token, state))
+    },
+    toggleModalCreateSubtopic: ()=>{
+      dispatch(toggleModalCreateSubtopic())
+    },
+    addSubtopic: (name, id, token) => {
+      dispatch(addSubtopic(name, id, token))
     }
   }
 }
 
 const TopicHeader = connect(mapStateToProps, mapDispatchToProps)(topicHeader)
+const Subtopics = connect(mapStateToProps)(subtopics)
 
 export default Topic

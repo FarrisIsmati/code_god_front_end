@@ -6,6 +6,7 @@ import {
   RECEIVE_USER,
   LOGOUT_USER,
   TOGGLE_TOPIC,
+  ADD_SUBTOPIC,
   ADD_TOPIC
 }                          from "../constants/constants"
 import { modifyTopic }     from './helpers.js'
@@ -25,6 +26,28 @@ export function addTopic(name, token) {
     })
     .then((json)=>{
       dispatch(addTopicState(json))
+    })
+  }
+}
+
+//Creating a new subtopic
+function addSubtopicState(user) {
+  return {
+    type: ADD_SUBTOPIC,
+    data: user.data.domain
+  }
+}
+
+export function addSubtopic(name, id, token) {
+  return function(dispatch){
+    axios.post('http://localhost:3001/data/user/topic/' + id + '/' + token,{
+      "name": name
+    })
+    .then(()=>{
+      axios.get('http://localhost:3001/data/user/' + token)
+      .then((user)=>{
+        dispatch(addSubtopicState(user))
+      })
     })
   }
 }
