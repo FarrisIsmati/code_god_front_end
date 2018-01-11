@@ -1,4 +1,4 @@
-import update                 from 'immutability-helper';
+import update                 from 'immutability-helper'
 import {
   REQUEST_USER,
   RECEIVE_USER,
@@ -48,36 +48,8 @@ export function dataReducer(state = default_state, action) {
         ...state, ...newTopicData
       }
     case TOGGLE_TOPIC:
-      //Toggles topics state to show on or off
-      let topicShowState
-      const index = state.topics.findIndex((topic)=>{
-        return topic._id == action.id
-      })
-      //If topic is off remove topic from array and add it to end of the list of topics
-      if (!state.topics[index].show){
-        let tempTopic = Object.assign({}, state.topics[index])
-        tempTopic.show = true
-        const spliced = update(state,
-          {topics:
-            { $splice: [[index, 1]] }
-          }
-        )
-        topicShowState = update(spliced,
-          {topics:
-            { $push: [tempTopic]}
-          })
-      } else {
-        topicShowState = update(state,
-          {topics:
-            {[index]:
-              { show: (val)=>{return val?false:true} }
-            }
-          }
-        )
-      }
-
       return {
-        ...state, ...topicShowState
+        ...state, ...action.topicShowState
       }
     case RECEIVE_USER:
     case REQUEST_USER:

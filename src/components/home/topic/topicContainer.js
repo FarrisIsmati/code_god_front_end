@@ -40,7 +40,7 @@ class TopicContainer extends Component{
       return topic.show
     }).map((topic, i)=>{
       return(
-        <Topic topic={topic} key={i} pairity={i}/>
+        <Topic topic={topic} state={this.props.user} key={i} pairity={i}/>
       )
     }) : null
 
@@ -73,8 +73,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleModalCreate: ()=>{
       dispatch(toggleModalCreate())
     },
-    toggleTopic: (index)=>{
-      dispatch(toggleTopic(index))
+    toggleTopic: (id, token, state)=>{
+      dispatch(toggleTopic(id, token, state))
     },
     addTopic: (name, token)=>{
       dispatch(addTopic(name, token))

@@ -9,7 +9,9 @@ import topicHeader        from './topicHeader.js'
 import '../../../stylesheets/flex.css'
 import '../../../stylesheets/topic.css'
 
-const Topic = ({topic, pairity}) => {
+//https://quilljs.com/
+//https://github.com/fritz-c/react-sortable-tree/tree/master/src
+const Topic = ({topic, state, pairity}) => {
   const backgroundColor=()=>{
     if (pairity % 2 === 0 || pairity === 0){
       return "#AFAFAF"
@@ -19,7 +21,7 @@ const Topic = ({topic, pairity}) => {
   }
   return(
     <div style={{backgroundColor: backgroundColor()}}>
-      <TopicHeader topic={topic} pairity={pairity}/>
+      <TopicHeader topic={topic} state={state} pairity={pairity}/>
     </div>
   )
 }
@@ -30,8 +32,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleTopic: (index)=>{
-      dispatch(toggleTopic(index))
+    toggleTopic: (id, token, state)=>{
+      dispatch(toggleTopic(id, token, state))
     }
   }
 }
