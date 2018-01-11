@@ -10,6 +10,7 @@ import Root                 from './components/structure/Root'
 import rootReducer          from './redux/reducers/rootReducer'
 
 import './stylesheets/index.css'
+import './stylesheets/highlightjs.css'
 
 const loggerMiddleware = createLogger()
 
