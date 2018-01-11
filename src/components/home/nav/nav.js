@@ -5,14 +5,14 @@ import '../../../stylesheets/nav.css'
 
 const Nav = ({user, logout}) => (
   <div className="flex nav-container">
-    <h2>codeGod;</h2>
-    <div className="flex">
+    <h1>codeGod</h1>
+    <div className="flex nav-container-right">
       {
         user.activeUser ?
-        <p>{user.username}</p>:
+        <h2 id="username-display">{user.username}</h2>:
         null
       }
-      <p onClick={logout}>log out</p>
+      <h2 id="logout-btn" onClick={logout}>logOut</h2>
     </div>
   </div>
 )

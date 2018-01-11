@@ -1,0 +1,36 @@
+.login-holder {
+  height: 100%;
+  text-align: center;
+}
+
+.login-holder h1 {
+  font-size: 8em;
+}
+
+.oauth-holder {
+  margin-top: 30px;
+}
+
+.login-button {
+  font-size: 3em;
+  background-color: #f9f8fd;
+  color: #3d3d3f;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  padding: 5px 20px 5px 20px;
+  transition: background-color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #3d3d3f;
+  color: #f9f8fd;
+  transition: background-color 0.7s ease;
+  transition: color 0.7s ease;
+}
+
+.login-button:active {
+  background-color: #f9f8fd;
+  color: #f9f8fd;
+  transition: background-color 0.1s ease;
+}
