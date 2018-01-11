@@ -11,7 +11,7 @@ import {
 function addTopicState(json) {
   return {
     type: ADD_TOPIC,
-    json
+    data: json.data.domain.topics[json.data.domain.topics.length - 1]
   }
 }
 

@@ -39,12 +39,16 @@ function user(
 export function userReducer(state = default_state, action) {
   switch (action.type) {
     case ADD_TOPIC:
-      console.log('GREAT SUCCESS')
+      const newTopicData = update(state,
+        {topics:
+          {$push: [action.data]}
+        }
+      )
       return {
-        ...state
+        ...state, ...newTopicData
       }
     case TOGGLE_TOPIC:
-      const newData = update(state,
+      const topicShowState = update(state,
         {topics:
           {[action.payload.index]:
             { show: (val)=>{return val?false:true} }
@@ -52,7 +56,7 @@ export function userReducer(state = default_state, action) {
         }
       )
       return {
-        ...state, ...newData
+        ...state, ...topicShowState
       }
     case RECEIVE_USER:
     case REQUEST_USER:
