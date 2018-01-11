@@ -14,6 +14,25 @@ import toolbar                    from '../toolbar/toolbar.js'
 class TopicContainer extends Component{
   constructor(props){
     super(props)
+
+    this.updateGridColumns = this.updateGridColumns.bind(this)
+  }
+
+  updateGridColumns() {
+    let length = this.props.user.activeUser ? this.props.user.topics.filter((topic)=>{
+      return topic.show
+    }).length : 0
+
+    let grids = ('auto ').repeat(length)
+    return {
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: grids
+    }
+  }
+
+  componentDidUpdate() {
+    this.updateGridColumns()
   }
 
   render(){
@@ -21,13 +40,13 @@ class TopicContainer extends Component{
       return topic.show
     }).map((topic, i)=>{
       return(
-        <p key={i}>{topic.name}</p>
+        <Topic topic={topic} key={i}/>
       )
     }) : null
 
     return(
       <div className="flex topic-container">
-        <div>
+        <div style={this.updateGridColumns()}>
           {
             topics ?
             topics :

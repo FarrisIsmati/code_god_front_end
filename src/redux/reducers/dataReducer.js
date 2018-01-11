@@ -36,7 +36,7 @@ function user(
   }
 }
 
-export function userReducer(state = default_state, action) {
+export function dataReducer(state = default_state, action) {
   switch (action.type) {
     case ADD_TOPIC:
       const newTopicData = update(state,

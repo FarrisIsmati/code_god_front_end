@@ -3,9 +3,9 @@ import React              from 'react'
 import '../../../stylesheets/flex.css'
 import '../../../stylesheets/topic.css'
 
-const Topic = () => (
+const Topic = ({topic}) => (
   <div>
-    <p>hi</p>
+    <p>{topic.name}</p>
   </div>
 )
 
