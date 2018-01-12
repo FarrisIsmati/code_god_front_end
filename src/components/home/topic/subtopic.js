@@ -27,7 +27,7 @@ class Subtopics extends Component {
                 <Panel.Title toggle>
                   {subtopic.name}
                 </Panel.Title>
-                <Glyphicon className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
+                <Glyphicon onClick={() => this.props.deleteSubtopic(this.props.topicId, subtopic._id, localStorage.userToken, this.props.user)} className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
               </div>
             </Panel.Heading>
             <Panel.Collapse>

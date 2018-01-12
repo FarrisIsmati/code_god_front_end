@@ -3,7 +3,8 @@ import React              from 'react'
 import {
         toggleTopic,
         addSubtopic,
-        updateQuill
+        updateQuill,
+        deleteSubtopic
        }                  from "../../../redux/actions/userActions"
 import {
         toggleModalCreateSubtopic
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateQuill: (topicId, subtopicId, data, state) => {
       dispatch(updateQuill(topicId, subtopicId, data, state))
+    },
+    deleteSubtopic: (topicId, subtopicId, token, state) => {
+      dispatch(deleteSubtopic(topicId, subtopicId, token, state))
     }
   }
 }

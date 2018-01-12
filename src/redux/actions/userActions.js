@@ -9,11 +9,13 @@ import {
   ADD_SUBTOPIC,
   ADD_TOPIC,
   DELETE_TOPIC,
-  UPDATE_QUILL
+  UPDATE_QUILL,
+  DELETE_SUBTOPIC
 }                          from "../constants/constants"
 import { modifyTopic,
          deleteTopicState,
-         updateSubtopic
+         updateSubtopic,
+         deletedSubtopic
        }                   from './helpers.js'
 
 //Update Quill State
@@ -40,6 +42,23 @@ export function addTopic(name, token) {
     })
     .then((json)=>{
       dispatch(addTopicState(json))
+    })
+  }
+}
+
+function deleteSubtopicState(topicId, subtopicId, token, state) {
+  const deletedSubtopicState = deletedSubtopic(topicId, subtopicId, state)
+  return {
+    type: DELETE_SUBTOPIC,
+    deletedSubtopicState
+  }
+}
+
+export function deleteSubtopic(topicId, subtopicId, token, state) {
+  return function(dispatch){
+    axios.delete('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token)
+    .then(()=>{
+      dispatch(deleteSubtopicState(topicId, subtopicId, token, state))
     })
   }
 }

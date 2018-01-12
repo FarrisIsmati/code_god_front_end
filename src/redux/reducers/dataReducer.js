@@ -7,7 +7,8 @@ import {
   ADD_SUBTOPIC,
   ADD_TOPIC,
   DELETE_TOPIC,
-  UPDATE_QUILL
+  UPDATE_QUILL,
+  DELETE_SUBTOPIC
 }                             from "../constants/constants"
 
 const default_state = {
@@ -53,6 +54,10 @@ export function dataReducer(state = default_state, action) {
       )
       return {
         ...state, ...newTopicData
+      }
+    case DELETE_SUBTOPIC:
+      return {
+        ...state, ...action.deletedSubtopicState
       }
     case ADD_SUBTOPIC:
       const newSubtopicData = update(state,

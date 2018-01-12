@@ -69,3 +69,24 @@ export function updateSubtopic(topicId, subtopicId, dataText, state){
   )
   return updatedSubtopic
 }
+
+export function deletedSubtopic(topicId, subtopicId, state){
+  const indexTopic = state.topics.findIndex((topic)=>{
+    return topic._id === topicId
+  })
+
+  const indexSubtopic = state.topics[indexTopic].subtopics.findIndex((subtopic)=>{
+    return subtopic._id === subtopicId
+  })
+
+  const deletedSubtopic = update(state,
+    { topics:
+      { [indexTopic]:
+        { subtopics:
+          { $splice: [[indexSubtopic,1]] }
+        }
+      }
+    }
+  )
+  return deletedSubtopic
+}
