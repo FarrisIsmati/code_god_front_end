@@ -1,11 +1,6 @@
 import React                         from 'react'
-import { Modal,
-         DropdownButton,
-         Button,
-         MenuItem,
-         FormControl,
-         ControlLabel,
-         Glyphicon
+import {
+         Modal
        }                              from 'react-bootstrap'
 
 import '../../../stylesheets/flex.css'

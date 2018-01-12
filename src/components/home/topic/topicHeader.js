@@ -2,7 +2,6 @@ import React              from 'react'
 import {
          Button,
          FormControl,
-         ControlLabel,
          Glyphicon
        }                              from 'react-bootstrap'
 

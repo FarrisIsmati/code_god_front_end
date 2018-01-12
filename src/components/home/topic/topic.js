@@ -18,8 +18,6 @@ import topicHeader        from './topicHeader.js'
 import '../../../stylesheets/flex.css'
 import '../../../stylesheets/topic.css'
 
-//https://quilljs.com/
-//https://github.com/fritz-c/react-sortable-tree/tree/master/src
 const Topic = ({topic, state, topicIndex}) => {
   const backgroundColor=()=>{
     if (topicIndex % 2 === 0 || topicIndex === 0){

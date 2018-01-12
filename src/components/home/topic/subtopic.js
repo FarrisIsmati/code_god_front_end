@@ -1,8 +1,6 @@
 import React, {Component}              from 'react'
 import { Panel }                       from 'react-bootstrap'
 
-import { connect }                     from 'react-redux'
-
 import {
          Glyphicon
        }                              from 'react-bootstrap'

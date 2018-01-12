@@ -1,10 +1,7 @@
 import React, { Component }           from 'react'
-import { Modal,
-         DropdownButton,
+import {
          Button,
-         MenuItem,
          FormControl,
-         ControlLabel,
          Glyphicon,
          Tooltip,
          OverlayTrigger,
