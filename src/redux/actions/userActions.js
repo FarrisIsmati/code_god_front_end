@@ -8,11 +8,22 @@ import {
   TOGGLE_TOPIC,
   ADD_SUBTOPIC,
   ADD_TOPIC,
-  DELETE_TOPIC
+  DELETE_TOPIC,
+  UPDATE_QUILL
 }                          from "../constants/constants"
 import { modifyTopic,
-         deleteTopicState
+         deleteTopicState,
+         updateSubtopic
        }                   from './helpers.js'
+
+//Update Quill State
+export function updateQuill(topicId, subtopicId, data, state){
+  const updatedSubtopic = updateSubtopic(topicId, subtopicId, data, state)
+  return {
+    type: UPDATE_QUILL,
+    updatedSubtopic
+  }
+}
 
 //Creating a new Topic
 function addTopicState(json) {

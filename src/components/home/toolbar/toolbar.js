@@ -36,25 +36,26 @@ class Toolbar extends  Component {
     }
 
     render(){
-      const dropDownItems = this.props.user.activeUser ?
-      this.props.user.topics.filter((topic)=>{
-        return !topic.show
-      }).map((topic,i) => {return (
-        <div key={i} className="flex topic-list-holder">
-          <ListGroupItem onClick={() => {this.toggleTopic(topic._id, localStorage.userToken, this.props.user)}}>{topic.name}</ListGroupItem>
-          <Glyphicon onClick={() => {this.deleteTopic(topic._id, localStorage.userToken, this.props.user)}} className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
-        </div>
-    )}) :
-      null
-
       const tooltip = (text)=>{
         return(
-        	<Tooltip id="tooltip">
-        		{text}
-        	</Tooltip>
+          <Tooltip id="tooltip">
+            {text}
+          </Tooltip>
         )
-
       }
+
+      const dropDownItems = this.props.user.activeUser ?
+        this.props.user.topics.filter((topic)=>{
+          return !topic.show
+        }).map((topic,i) => {return (
+          <div key={i} className="flex topic-list-holder">
+            <ListGroupItem onClick={() => {this.toggleTopic(topic._id, localStorage.userToken, this.props.user)}}>{topic.name}</ListGroupItem>
+            <OverlayTrigger placement="right" overlay={tooltip('Delete Topic')}>
+              <Glyphicon onClick={() => {this.deleteTopic(topic._id, localStorage.userToken, this.props.user)}} className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
+            </OverlayTrigger>
+          </div>
+        )}) : null
+
       return(
         <div>
           <ModalForm toggle={this.props.ui.modalAddShow} title={'Add Topic'} dispatch={this.toggleModalAdd} id={"modal-dropdown"} >

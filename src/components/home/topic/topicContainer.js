@@ -44,7 +44,7 @@ class TopicContainer extends Component{
       return topic.show
     }).map((topic, i)=>{
       return(
-        <Topic topic={topic} state={this.props.user} key={i} pairity={i}/>
+        <Topic topic={topic} state={this.props.user} key={i} topicIndex={i}/>
       )
     }) : null
 

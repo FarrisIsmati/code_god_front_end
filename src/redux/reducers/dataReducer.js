@@ -6,7 +6,8 @@ import {
   TOGGLE_TOPIC,
   ADD_SUBTOPIC,
   ADD_TOPIC,
-  DELETE_TOPIC
+  DELETE_TOPIC,
+  UPDATE_QUILL
 }                             from "../constants/constants"
 
 const default_state = {
@@ -40,6 +41,10 @@ function user(
 
 export function dataReducer(state = default_state, action) {
   switch (action.type) {
+    case UPDATE_QUILL:
+      return {
+        ...state, ...action.updatedSubtopic
+      }
     case ADD_TOPIC:
       const newTopicData = update(state,
         {topics:

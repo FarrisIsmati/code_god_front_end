@@ -8,6 +8,7 @@ export const DELETE_TOPIC = 'DELTE_TOPIC'
 export const TOGGLE_TOPIC = 'TOGGLE_TOPIC'
 export const ADD_TOPIC = 'ADD_TOPIC'
 export const ADD_SUBTOPIC = 'ADD_SUBTOPIC'
+export const UPDATE_QUILL = 'UPDATE_QUILL'
 
 //UI
 export const TOGGLE_MODAL_ADD = 'TOGGLE_MODAL_ADD'

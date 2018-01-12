@@ -2,7 +2,8 @@ import React              from 'react'
 
 import {
         toggleTopic,
-        addSubtopic
+        addSubtopic,
+        updateQuill
        }                  from "../../../redux/actions/userActions"
 import {
         toggleModalCreateSubtopic
@@ -18,9 +19,9 @@ import '../../../stylesheets/topic.css'
 
 //https://quilljs.com/
 //https://github.com/fritz-c/react-sortable-tree/tree/master/src
-const Topic = ({topic, state, pairity}) => {
+const Topic = ({topic, state, topicIndex}) => {
   const backgroundColor=()=>{
-    if (pairity % 2 === 0 || pairity === 0){
+    if (topicIndex % 2 === 0 || topicIndex === 0){
       return "#AFAFAF"
     } else {
       return "#C1C1C1"
@@ -28,8 +29,8 @@ const Topic = ({topic, state, pairity}) => {
   }
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
-      <TopicHeader topic={topic} state={state} pairity={pairity}/>
-      <Subtopics subtopics={topic.subtopics} topicId={topic._id}/>
+      <TopicHeader topic={topic} state={state} pairity={topicIndex}/>
+      <Subtopics topicIndex={topicIndex} subtopics={topic.subtopics} topicId={topic._id}/>
     </div>
   )
 }
@@ -49,6 +50,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addSubtopic: (name, id, token) => {
       dispatch(addSubtopic(name, id, token))
+    },
+    updateQuill: (topicId, subtopicId, data, state) => {
+      dispatch(updateQuill(topicId, subtopicId, data, state))
     }
   }
 }

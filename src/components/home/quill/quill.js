@@ -19,7 +19,7 @@ class Quill extends Component {
   }
 
   handleChange(value) {
-    this.setState({ text: value })
+    this.props.updateQuill(this.props.topicId, this.props.subtopicId, value, this.props.data)
   }
 
   saveState() {
@@ -27,13 +27,10 @@ class Quill extends Component {
       text: this.state.text
     })
     .then((res)=>{
+      console.log(res)
       this.setState({saved: true})
       setTimeout(()=>{ this.setState({saved: false}) }, 1000)
     })
-  }
-
-  componentDidMount(){
-    this.props.subtopicText ? this.setState({text: this.props.subtopicText}):null
   }
 
   render() {
@@ -50,7 +47,7 @@ class Quill extends Component {
 
     return (
       <div className="quill-holder">
-        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.state.text}
+        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText}
                     onChange={this.handleChange}>
         </ReactQuill>
         {

@@ -44,3 +44,28 @@ export function deleteTopicState(state, id){
 
   return splicedTopic
 }
+
+export function updateSubtopic(topicId, subtopicId, dataText, state){
+  const indexTopic = state.topics.findIndex((topic)=>{
+    return topic._id === topicId
+  })
+
+  const indexSubtopic = state.topics[indexTopic].subtopics.findIndex((subtopic)=>{
+    return subtopic._id === subtopicId
+  })
+
+  const updatedSubtopic = update(state,
+    { topics:
+      { [indexTopic]:
+        { subtopics:
+          { [indexSubtopic]:
+            { data:
+              { $set: dataText }
+            }
+          }
+        }
+      }
+    }
+  )
+  return updatedSubtopic
+}

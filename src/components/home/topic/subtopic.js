@@ -3,6 +3,10 @@ import { Panel }                       from 'react-bootstrap'
 
 import { connect }                     from 'react-redux'
 
+import {
+         Glyphicon
+       }                              from 'react-bootstrap'
+
 import Quill                           from '../quill/quill.js'
 
 import '../../../stylesheets/subtopic.css'
@@ -19,13 +23,16 @@ class Subtopics extends Component {
         <div className="subtopic-holder" key={i}>
           <Panel id="collapsible-panel-example-2">
             <Panel.Heading>
-              <Panel.Title toggle>
-                {subtopic.name}
-              </Panel.Title>
+              <div className="flex flex-spacebetween subtopic-header">
+                <Panel.Title toggle>
+                  {subtopic.name}
+                </Panel.Title>
+                <Glyphicon className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
+              </div>
             </Panel.Heading>
             <Panel.Collapse>
               <Panel.Body>
-                <Quill ref="quill" data={this.props.user} subtopicText={subtopic.data} topicId={this.props.topicId} subtopicId={subtopic._id}/>
+                <Quill topicIndex={this.props.topicIndex} subtopicIndex={i} topicId={this.props.topicId} updateQuill={this.props.updateQuill} ref="quill" data={this.props.user} subtopicText={subtopic.data} topicId={this.props.topicId} subtopicId={subtopic._id}/>
               </Panel.Body>
             </Panel.Collapse>
           </Panel>
