@@ -1,3 +1,22 @@
-.quill-holder {
-  margin: 5% 0 5% 0;
+.panel {
+  border-radius: 0px;
+  margin: 0;
+}
+
+.panel h2 {
+  color: #3d3d3f;
+}
+
+.panel-heading {
+  padding: 8px 5% 8px 5%;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.subtopic-holder {
+}
+
+.subtopics-holder {
 }

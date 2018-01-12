@@ -1,0 +1,30 @@
+.quill {
+  background-color: #f9f8fd;
+}
+
+.quill p {
+  color: #3d3d3f;
+}
+
+.quill h1 {
+  color: #3d3d3f;
+}
+
+.quill h2 {
+  color: #3d3d3f;
+}
+
+#save-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: black;
+}
+
+#save-btn:hover {
+  cursor: pointer;
+}
+
+.quill-holder {
+  position: relative;
+}

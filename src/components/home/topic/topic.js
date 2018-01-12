@@ -29,7 +29,7 @@ const Topic = ({topic, state, pairity}) => {
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
       <TopicHeader topic={topic} state={state} pairity={pairity}/>
-      <Subtopics subtopics={topic.subtopics}/>
+      <Subtopics subtopics={topic.subtopics} topicId={topic._id}/>
     </div>
   )
 }
@@ -54,6 +54,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const TopicHeader = connect(mapStateToProps, mapDispatchToProps)(topicHeader)
-const Subtopics = connect(mapStateToProps)(subtopics)
+const Subtopics = connect(mapStateToProps, mapDispatchToProps)(subtopics)
 
 export default Topic
