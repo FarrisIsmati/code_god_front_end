@@ -2,7 +2,8 @@ import React              from 'react'
 import {
          Button,
          FormControl,
-         ControlLabel
+         ControlLabel,
+         Glyphicon
        }                              from 'react-bootstrap'
 
 import ModalForm          from '../common/modal.js'
@@ -37,9 +38,9 @@ import '../../../stylesheets/topic.css'
           </form>
         </ModalForm>
         <h2>{topic.name}</h2>
-        <div className="flex">
-          <h2 onClick={()=>toggleModalCreateSubtopic()}>+</h2>
-          <h2 onClick={()=>toggleTopic(topic._id, localStorage.userToken, state)}>X</h2>
+        <div className="flex glyphicon-header-holder">
+          <Glyphicon onClick={()=>toggleModalCreateSubtopic()} glyph="glyphicon glyphicon-plus" />
+          <Glyphicon onClick={()=>toggleTopic(topic._id, localStorage.userToken, state)} glyph="glyphicon glyphicon-remove" />
         </div>
       </div>
     )

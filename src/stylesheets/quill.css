@@ -14,15 +14,26 @@
   color: #3d3d3f;
 }
 
-#save-btn {
+#saved-btn {
+  font-size: 1.2em;
   position: absolute;
   bottom: 5px;
   right: 5px;
-  color: black;
+  color: #d1f1a9;
+}
+
+#save-btn {
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: rgba(61, 61, 63, .5);
+  transition: color .1s ease;
 }
 
 #save-btn:hover {
-  cursor: pointer;
+  color: rgba(61, 61, 63, 1);
+  transition: color .2s ease;
 }
 
 .quill-holder {

@@ -4,7 +4,10 @@ import { Modal,
          Button,
          MenuItem,
          FormControl,
-         ControlLabel
+         ControlLabel,
+         Glyphicon,
+         Tooltip,
+         OverlayTrigger
        }                              from 'react-bootstrap'
 
 import '../../../stylesheets/flex.css'
@@ -34,8 +37,16 @@ class Toolbar extends  Component {
       }).map((topic,i) => {return (<MenuItem eventKey={String(i)} key={i} onClick={() => {this.toggleModalAdd(); this.toggleTopic(topic._id, localStorage.userToken, this.props.user)}}>{topic.name}</MenuItem>)}) :
       null
 
+      const tooltip = (text)=>{
+        return(
+        	<Tooltip id="tooltip">
+        		{text}
+        	</Tooltip>
+        )
+
+      }
       return(
-        <div className="flex toolbar-container">
+        <div>
           <Modal show={this.props.ui.modalAddShow}>
             <Modal.Header closeButton onClick={this.toggleModalAdd}>
               <Modal.Title>Add Topic</Modal.Title>
@@ -70,9 +81,15 @@ class Toolbar extends  Component {
             </Modal.Body>
           </Modal>
 
-          <p onClick={this.toggleModalAdd}>Add</p>
-          <p onClick={this.toggleModalCreate}>Create</p>
+        <div className="flex flex-column toolbar-container">
+          <OverlayTrigger placement="left" overlay={tooltip('Add Topic')}>
+            <Glyphicon onClick={this.toggleModalAdd} glyph="glyphicon glyphicon-plus" />
+          </OverlayTrigger>
+          <OverlayTrigger placement="left" overlay={tooltip('Create Topic')}>
+            <Glyphicon onClick={this.toggleModalCreate} glyph="glyphicon glyphicon-pencil" />
+          </OverlayTrigger>
         </div>
+      </div>
       )
     }
 }

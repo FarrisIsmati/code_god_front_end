@@ -9,7 +9,7 @@ import '../../stylesheets/login.css'
 const LoginPage = ({user, response, getUserData }) => (
   <div className="flex flex-center login-holder">
     <div className="flex flex-column">
-      <h1>codeGod;</h1>
+      <h1>Study.js</h1>
       <p>
         <span className="declaration">const </span><span className="variable">masterDomain </span>= (<span>study</span>){' => { '}<span className="return">return </span>{'success }'}
       </p>

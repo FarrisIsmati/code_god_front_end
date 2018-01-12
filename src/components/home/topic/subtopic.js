@@ -19,12 +19,9 @@ class Subtopics extends Component {
         <div className="subtopic-holder" key={i}>
           <Panel id="collapsible-panel-example-2">
             <Panel.Heading>
-              <div className="flex flex-spacebetween">
-                <Panel.Title toggle>
-                  {subtopic.name}
-                </Panel.Title>
-                <h2 onClick={() => {this.refs.quill.saveState()}}>save</h2>
-              </div>
+              <Panel.Title toggle>
+                {subtopic.name}
+              </Panel.Title>
             </Panel.Heading>
             <Panel.Collapse>
               <Panel.Body>

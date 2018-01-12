@@ -1,5 +1,7 @@
 import ReactQuill                 from 'react-quill'
 import React, {Component}         from 'react'
+import { Glyphicon }              from 'react-bootstrap'
+
 
 import axios                      from 'axios'
 import '../../../stylesheets/quill.css'
@@ -8,7 +10,8 @@ class Quill extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: ''
+      text: '',
+      saved: false
      }
 
     this.saveState = this.saveState.bind(this)
@@ -24,7 +27,8 @@ class Quill extends Component {
       text: this.state.text
     })
     .then((res)=>{
-      console.log(res)
+      this.setState({saved: true})
+      setTimeout(()=>{ this.setState({saved: false}) }, 1000)
     })
   }
 
@@ -48,7 +52,11 @@ class Quill extends Component {
         <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.state.text}
                     onChange={this.handleChange}>
         </ReactQuill>
-        <div id="save-btn" onClick={this.saveState}>save</div>
+        {
+          this.state.saved ?
+          <Glyphicon id="saved-btn" glyph="glyphicon glyphicon-floppy-saved" /> :
+          <Glyphicon id="save-btn" onClick={this.saveState} glyph="glyphicon glyphicon-floppy-disk" />
+        }
       </div>
     )
   }

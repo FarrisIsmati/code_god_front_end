@@ -1,7 +1,13 @@
 .toolbar-container{
-  background-color: #FFFFFF;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
+  position: fixed;
+  padding: 5px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 5px;
+  background-color: rgba(249, 248, 253, .6);
+  z-index: 99;
+}
+
+.toolbar-container .glyphicon{
+  font-size: 1.5em;
 }

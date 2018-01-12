@@ -5,6 +5,7 @@
 
 .login-holder h1 {
   font-size: 8em;
+  margin-bottom: 25px;
 }
 
 .oauth-holder {
@@ -33,4 +34,16 @@
   background-color: #f9f8fd;
   color: #f9f8fd;
   transition: background-color 0.1s ease;
+}
+
+.declaration {
+  color: #ff8e24;
+}
+
+.variable {
+  color: #d1f1a9;
+}
+
+.return {
+  color: #ff9da4;
 }

@@ -49,6 +49,7 @@ class TopicContainer extends Component{
 
     return(
       <div className="flex topics-holder">
+        <Toolbar />
         <div style={this.updateGridColumns()}>
           {
             topics ?
@@ -56,7 +57,6 @@ class TopicContainer extends Component{
             null
           }
         </div>
-        <Toolbar />
       </div>
     )
   }
