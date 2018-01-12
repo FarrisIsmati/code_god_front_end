@@ -30,3 +30,17 @@ export function modifyTopic(state, id){
   }
   return topicShowState
 }
+
+export function deleteTopicState(state, id){
+  const index = state.topics.findIndex((topic)=>{
+    return topic._id === id
+  })
+
+  const splicedTopic = update(state,
+    {topics:
+      { $splice: [[index, 1]] }
+    }
+  )
+
+  return splicedTopic
+}

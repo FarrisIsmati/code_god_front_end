@@ -43,6 +43,7 @@ class Quill extends Component {
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline'],
       [{ 'color': [] }, { 'background': [] }],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['blockquote', 'code-block']
     ],
   }

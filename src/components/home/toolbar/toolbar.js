@@ -7,8 +7,12 @@ import { Modal,
          ControlLabel,
          Glyphicon,
          Tooltip,
-         OverlayTrigger
+         OverlayTrigger,
+         ListGroup,
+         ListGroupItem
        }                              from 'react-bootstrap'
+
+import ModalForm                      from '../common/modal'
 
 import '../../../stylesheets/flex.css'
 import '../../../stylesheets/toolbar.css'
@@ -16,8 +20,9 @@ import '../../../stylesheets/toolbar.css'
 class Toolbar extends  Component {
     constructor(props) {
       super(props)
-      const { toggleModalAdd, toggleModalCreate, toggleTopic, addTopic } = this.props
+      const { toggleModalAdd, toggleModalCreate, toggleTopic, addTopic, deleteTopic } = this.props
 
+      this.deleteTopic = deleteTopic.bind(this)
       this.addTopic = addTopic.bind(this)
       this.toggleTopic = toggleTopic.bind(this)
       this.toggleModalCreate = toggleModalCreate.bind(this)
@@ -34,7 +39,12 @@ class Toolbar extends  Component {
       const dropDownItems = this.props.user.activeUser ?
       this.props.user.topics.filter((topic)=>{
         return !topic.show
-      }).map((topic,i) => {return (<MenuItem eventKey={String(i)} key={i} onClick={() => {this.toggleModalAdd(); this.toggleTopic(topic._id, localStorage.userToken, this.props.user)}}>{topic.name}</MenuItem>)}) :
+      }).map((topic,i) => {return (
+        <div key={i} className="flex topic-list-holder">
+          <ListGroupItem onClick={() => {this.toggleTopic(topic._id, localStorage.userToken, this.props.user)}}>{topic.name}</ListGroupItem>
+          <Glyphicon onClick={() => {this.deleteTopic(topic._id, localStorage.userToken, this.props.user)}} className="flex flex-center trash-glyph" glyph="glyphicon glyphicon-trash" />
+        </div>
+    )}) :
       null
 
       const tooltip = (text)=>{
@@ -47,49 +57,34 @@ class Toolbar extends  Component {
       }
       return(
         <div>
-          <Modal show={this.props.ui.modalAddShow}>
-            <Modal.Header closeButton onClick={this.toggleModalAdd}>
-              <Modal.Title>Add Topic</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              { this.props.user.activeUser ?
-                <DropdownButton
-                  bsSize="large"
-                  title="Topics"
-                  id="dropdown-size-large"
-                >
+          <ModalForm toggle={this.props.ui.modalAddShow} title={'Add Topic'} dispatch={this.toggleModalAdd} id={"modal-dropdown"} >
+            { this.props.user.activeUser ?
+                <ListGroup>
                   {dropDownItems}
-                </DropdownButton> :
-                null
-              }
-            </Modal.Body>
-          </Modal>
+              	</ListGroup> :
+              null
+            }
+          </ModalForm>
 
-          <Modal show={this.props.ui.modalCreateShow}>
-            <Modal.Header closeButton onClick={this.toggleModalCreate}>
-              <Modal.Title>Create Topic</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form onSubmit={(e) => {this.createTopic(e); this.toggleModalCreate()}}>
-                <ControlLabel>Working example with validation</ControlLabel>
-                  <FormControl
-                    type="text"
-                    placeholder="Enter text"
-                  />
-                <Button type="submit">Submit</Button>
-              </form>
-            </Modal.Body>
-          </Modal>
+          <ModalForm toggle={this.props.ui.modalCreateShow} title={'Create Topic'} dispatch={this.toggleModalCreate}>
+            <form onSubmit={(e) => {this.createTopic(e); this.toggleModalCreate()}}>
+              <FormControl
+                type="text"
+                placeholder="Enter text"
+              />
+              <Button bsSize="large" type="submit">Submit</Button>
+            </form>
+          </ModalForm>
 
-        <div className="flex flex-column toolbar-container">
-          <OverlayTrigger placement="left" overlay={tooltip('Add Topic')}>
-            <Glyphicon onClick={this.toggleModalAdd} glyph="glyphicon glyphicon-plus" />
-          </OverlayTrigger>
-          <OverlayTrigger placement="left" overlay={tooltip('Create Topic')}>
-            <Glyphicon onClick={this.toggleModalCreate} glyph="glyphicon glyphicon-pencil" />
-          </OverlayTrigger>
+          <div className="flex flex-column toolbar-container">
+            <OverlayTrigger placement="left" overlay={tooltip('Add/Delete Topics')}>
+              <Glyphicon onClick={this.toggleModalAdd} glyph="glyphicon glyphicon-plus" />
+            </OverlayTrigger>
+            <OverlayTrigger placement="left" overlay={tooltip('Create Topic')}>
+              <Glyphicon onClick={this.toggleModalCreate} glyph="glyphicon glyphicon-pencil" />
+            </OverlayTrigger>
+          </div>
         </div>
-      </div>
       )
     }
 }

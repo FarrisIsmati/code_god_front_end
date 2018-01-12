@@ -11,3 +11,7 @@
 .toolbar-container .glyphicon{
   font-size: 1.5em;
 }
+
+.topic-list-holder {
+  margin-top: 5px;
+}

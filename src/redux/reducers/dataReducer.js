@@ -5,7 +5,8 @@ import {
   LOGOUT_USER,
   TOGGLE_TOPIC,
   ADD_SUBTOPIC,
-  ADD_TOPIC
+  ADD_TOPIC,
+  DELETE_TOPIC
 }                             from "../constants/constants"
 
 const default_state = {
@@ -56,6 +57,10 @@ export function dataReducer(state = default_state, action) {
       )
       return {
         ...state, ...newSubtopicData
+      }
+    case DELETE_TOPIC:
+      return {
+        ...state, ...action.deletedTopicState
       }
     case TOGGLE_TOPIC:
       return {

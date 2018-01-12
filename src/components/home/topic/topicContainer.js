@@ -4,7 +4,8 @@ import { toggleModalAdd,
          toggleModalCreate
        }                          from "../../../redux/actions/uiActions"
 import { toggleTopic,
-         addTopic
+         addTopic,
+         deleteTopic
        }                          from "../../../redux/actions/userActions"
 import { connect }                from 'react-redux'
 
@@ -80,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addTopic: (name, token)=>{
       dispatch(addTopic(name, token))
+    },
+    deleteTopic: (id, token, state)=>{
+      dispatch(deleteTopic(id, token, state))
     }
   }
 }

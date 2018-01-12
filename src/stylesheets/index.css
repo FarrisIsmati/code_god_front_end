@@ -11,7 +11,7 @@ html, body{
   height: 100%;
 }
 
-h1, h2, a, p {
+h1, h2, h4, a, p {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -49,4 +49,9 @@ p {
   color: #808085;
   transition: color .3s ease;
   cursor: pointer;
+}
+
+.trash-glyph {
+  margin-left: 10px;
+  font-size: 1.3em;
 }

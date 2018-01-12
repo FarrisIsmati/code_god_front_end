@@ -4,10 +4,12 @@ import { Modal,
          Button,
          MenuItem,
          FormControl,
-         ControlLabel
+         ControlLabel,
+         Glyphicon
        }                              from 'react-bootstrap'
 
 import '../../../stylesheets/flex.css'
+import '../../../stylesheets/modal.css'
 
 const ModalForm = ({toggle, title, dispatch, children}) => {
   return(

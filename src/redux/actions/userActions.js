@@ -7,9 +7,12 @@ import {
   LOGOUT_USER,
   TOGGLE_TOPIC,
   ADD_SUBTOPIC,
-  ADD_TOPIC
+  ADD_TOPIC,
+  DELETE_TOPIC
 }                          from "../constants/constants"
-import { modifyTopic }     from './helpers.js'
+import { modifyTopic,
+         deleteTopicState
+       }                   from './helpers.js'
 
 //Creating a new Topic
 function addTopicState(json) {
@@ -48,6 +51,24 @@ export function addSubtopic(name, id, token) {
       .then((user)=>{
         dispatch(addSubtopicState(user))
       })
+    })
+  }
+}
+
+//Deleting a topic
+function deletingTopicState(deletedTopicState) {
+  return {
+    type: DELETE_TOPIC,
+    deletedTopicState
+  }
+}
+
+export function deleteTopic(id, token, state) {
+  return function(dispatch){
+    const deletedTopicState = deleteTopicState(state, id)
+    axios.delete('http://localhost:3001/data/user/topic/' + id + '/' + token)
+    .then(()=>{
+      dispatch(deletingTopicState(deletedTopicState))
     })
   }
 }

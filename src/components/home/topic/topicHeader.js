@@ -10,6 +10,7 @@ import ModalForm          from '../common/modal.js'
 
 import '../../../stylesheets/flex.css'
 import '../../../stylesheets/topic.css'
+import '../../../stylesheets/modal.css'
 
   const TopicHeader = ({topic, state, ui, toggleTopic, toggleModalCreateSubtopic, addSubtopic, pairity}) => {
     const backgroundColor=()=>{
@@ -29,7 +30,7 @@ import '../../../stylesheets/topic.css'
       <div style={{backgroundColor: backgroundColor()}} className="flex flex-spacebetween topic-header-holder">
         <ModalForm toggle={ui.modalCreateSubtopicShow} title={'Add Subtopic'} dispatch={()=>toggleModalCreateSubtopic()}>
           <form onSubmit={(e) => {createSubtopic(e); toggleModalCreateSubtopic()}}>
-            <ControlLabel>Working example with validation</ControlLabel>
+            <label>{topic.name}</label>
               <FormControl
                 type="text"
                 placeholder="Enter text"
