@@ -47,7 +47,7 @@ class Quill extends Component {
 
     return (
       <div className="quill-holder">
-        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText}
+        <ReactQuill ref="quill" theme="bubble" modules={modules} value={'<p>test</p>'}
                     onChange={this.handleChange}>
         </ReactQuill>
         {
