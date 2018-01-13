@@ -12,7 +12,8 @@ import {
   UPDATE_QUILL,
   DELETE_SUBTOPIC
 }                          from "../constants/constants"
-import { modifyTopic,
+import {
+         modifyTopic,
          deleteTopicState,
          updateSubtopic,
          deletedSubtopic

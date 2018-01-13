@@ -1,22 +1,22 @@
-import React, { Component }              from 'react'
+//GENERAL
+import React, { Component }           from 'react'
 import {
          Button,
          FormControl,
          Glyphicon
        }                              from 'react-bootstrap'
 
-import ModalForm          from '../common/modal.js'
+//COMPONENTS
+import ModalForm                      from '../common/modal.js'
 
-import '../../../stylesheets/flex.css'
-import '../../../stylesheets/topic.css'
-import '../../../stylesheets/modal.css'
+import '../../stylesheets/flex.css'
+import '../../stylesheets/topic.css'
+import '../../stylesheets/modal.css'
 
 class TopicHeader extends Component{
   constructor(props){
     super(props)
-    this.state = {
-      show: false
-    }
+    this.state = { showModal: false }
 
     this.toggleState = this.toggleState.bind(this)
     this.createSubtopic = this.createSubtopic.bind(this)
@@ -24,11 +24,12 @@ class TopicHeader extends Component{
   }
 
   toggleState() {
-    this.setState({show:!this.state.show})
+    this.setState({showModal:!this.state.showModal})
   }
 
+  //Changes background color of the topic header based on its index pairity
   backgroundColor(){
-    if (this.props.pairity % 2 === 0 || this.props.pairity === 0){
+    if (this.props.topicIndex % 2 === 0 || this.props.topicIndex === 0){
       return "#E7E7E7"
     } else {
       return "#F3F3F3"
@@ -42,8 +43,8 @@ class TopicHeader extends Component{
 
   render(){
     return (
-      <div onClick={()=>{console.log(this.props.pairity)}}>
-        <ModalForm toggle={this.state.show} title={'Add Subtopic'} dispatch={()=>this.toggleState()}>
+      <div>
+        <ModalForm toggle={this.state.showModal} title={'Add Subtopic'} dispatch={()=>this.toggleState()}>
           <form onSubmit={(e) => {this.createSubtopic(e); this.toggleState()}}>
 
 

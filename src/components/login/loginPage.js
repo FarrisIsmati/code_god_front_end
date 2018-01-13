@@ -1,6 +1,6 @@
+//GENERAL
 import React           from 'react'
 import GoogleLogin     from 'react-google-login'
-
 import PropTypes       from 'prop-types'
 
 import '../../stylesheets/flex.css'
@@ -11,7 +11,7 @@ const LoginPage = ({user, response, getUserData }) => (
     <div className="flex flex-column">
       <h1>Study.js</h1>
       <p>
-        <span className="declaration">const </span><span className="variable">masterDomain </span>= (<span>study</span>){' => { '}<span className="return">return </span>{'success }'}
+        <span className="declaration">const </span><span className="variable">topic </span>= (<span>study</span>){' => { '}<span className="return">return </span>{'success }'}
       </p>
       <div className="oauth-holder">
         <GoogleLogin
@@ -27,7 +27,9 @@ const LoginPage = ({user, response, getUserData }) => (
 )
 
 LoginPage.propTypes = {
-  response: PropTypes.func
+  user: PropTypes.object,
+  response: PropTypes.func,
+    getUserData: PropTypes.func
 }
 
 export default LoginPage

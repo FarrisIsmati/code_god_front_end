@@ -1,16 +1,15 @@
+//GENERAL
 import ReactQuill                 from 'react-quill'
 import React, {Component}         from 'react'
 import { Glyphicon }              from 'react-bootstrap'
-
-
 import axios                      from 'axios'
-import '../../../stylesheets/quill.css'
+
+import '../../stylesheets/quill.css'
 
 class Quill extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: '',
       saved: false
      }
 
@@ -18,12 +17,12 @@ class Quill extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  //Update store with quill data
   handleChange(value) {
-    // console.log(this.props.subtopicText)
-    // this.setState({text:value})
     this.props.updateQuill(this.props.topicId, this.props.subtopicId, value, this.props.data)
   }
 
+  //Save State
   saveState() {
     axios.put('http://localhost:3001/data/user/topic/' + this.props.topicId + '/' + this.props.subtopicId + '/' + localStorage.userToken, {
       text: this.props.subtopicText
@@ -37,21 +36,19 @@ class Quill extends Component {
 
   render() {
     const modules = {
-    syntax: true,
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ['bold', 'italic', 'underline'],
-      [{ 'color': [] }, { 'background': [] }],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['blockquote', 'code-block']
-    ],
-  }
+      syntax: true,
+      toolbar: [
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['blockquote', 'code-block']
+      ],
+    }
 
     return (
       <div className="quill-holder">
-        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText}
-                    onChange={this.handleChange}>
-        </ReactQuill>
+        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText} onChange={this.handleChange}/>
         {
           this.state.saved ?
           <Glyphicon id="saved-btn" glyph="glyphicon glyphicon-floppy-saved" /> :

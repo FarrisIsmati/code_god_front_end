@@ -1,7 +1,8 @@
+//GENERAL
 import React           from 'react'
 
-import '../../../stylesheets/flex.css'
-import '../../../stylesheets/nav.css'
+import '../../stylesheets/flex.css'
+import '../../stylesheets/nav.css'
 
 const Nav = ({user, logout}) => (
   <div className="flex nav-container">

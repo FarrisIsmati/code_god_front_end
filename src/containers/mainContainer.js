@@ -1,14 +1,19 @@
+//GENERAL
 import React, {Component}         from 'react'
-
 import { connect }                from 'react-redux'
 
-import { fetchUserDataIfNeeded,
-         logoutUser }             from "../../redux/actions/userActions"
-import Nav                        from './nav/nav.js'
-import TopicContainer            from './topic/topicContainer.js'
+//REDUX
+import {
+         fetchUserDataIfNeeded,
+         logoutUser
+       }                          from "../redux/actions/userActions"
 
-import '../../stylesheets/home.css'
-import '../../stylesheets/flex.css'
+//COMPONENTS
+import Nav                        from '../components/nav/nav.js'
+import TopicContainer             from './topicContainer.js'
+
+import '../stylesheets/home.css'
+import '../stylesheets/flex.css'
 
 class HomeContainer extends Component{
   constructor(props){
@@ -28,11 +33,12 @@ class HomeContainer extends Component{
     }
   }
 
+  //*Future* Hold a router for switching between your topics and everyone elses public topics
   render(){
     return(
       <div className="grid-home">
         <Navbar logout={this.logUserOut}/>
-        <Topics />
+        <TopicContainer />
       </div>
     )
   }
@@ -44,6 +50,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+      //When on this page check if you have a valid token otherwise reroute
       getUserData: (token) => {
         dispatch(fetchUserDataIfNeeded(token))
         .then(() => {
@@ -64,6 +71,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Navbar = connect(mapStateToProps, mapDispatchToProps)(Nav)
-const Topics = connect(mapStateToProps, mapDispatchToProps)(TopicContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

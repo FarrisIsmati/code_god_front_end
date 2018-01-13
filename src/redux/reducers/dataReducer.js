@@ -1,15 +1,16 @@
 import update                 from 'immutability-helper'
+
 import {
-  REQUEST_USER,
-  RECEIVE_USER,
-  LOGOUT_USER,
-  TOGGLE_TOPIC,
-  ADD_SUBTOPIC,
-  ADD_TOPIC,
-  DELETE_TOPIC,
-  UPDATE_QUILL,
-  DELETE_SUBTOPIC
-}                             from "../constants/constants"
+          REQUEST_USER,
+          RECEIVE_USER,
+          LOGOUT_USER,
+          TOGGLE_TOPIC,
+          ADD_SUBTOPIC,
+          ADD_TOPIC,
+          DELETE_TOPIC,
+          UPDATE_QUILL,
+          DELETE_SUBTOPIC
+        }                     from "../constants/constants"
 
 const default_state = {
   activeUser: false

@@ -1,10 +1,9 @@
+//GENERAL
 import React                         from 'react'
-import {
-         Modal
-       }                              from 'react-bootstrap'
+import { Modal }                     from 'react-bootstrap'
 
-import '../../../stylesheets/flex.css'
-import '../../../stylesheets/modal.css'
+import '../../stylesheets/flex.css'
+import '../../stylesheets/modal.css'
 
 const ModalForm = ({toggle, title, dispatch, children}) => {
   return(

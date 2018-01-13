@@ -1,11 +1,13 @@
+//GENERAL
 import React, {Component}         from 'react'
-
 import { connect }                from 'react-redux'
 import axios                      from 'axios'
 
-import { fetchUserDataIfNeeded }             from "../../redux/actions/userActions"
+//REDUX
+import { fetchUserDataIfNeeded }  from "../redux/actions/userActions"
 
-import LoginPage                  from './loginPage.js'
+//COMPONENTS
+import LoginPage                  from '../components/login/loginPage.js'
 
 class LoginContainer extends Component{
   constructor(props) {
@@ -17,12 +19,7 @@ class LoginContainer extends Component{
     this.updateUser = this.updateUser.bind(this)
   }
 
-  componentDidMount(){
-    if (localStorage.userToken){
-      this.getUserData(localStorage.userToken)
-    }
-  }
-
+  //Create a user after login then get user data in the store
   updateUser(googleId, email) {
     axios.post(`http://localhost:3001/auth/google`, {
       googleId: googleId,
@@ -34,6 +31,7 @@ class LoginContainer extends Component{
     .catch((err) => {console.log(err)})
   }
 
+  //Get Login response and store google's JWT in local storage
   responseGoogle(res) {
     axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=` + res.tokenId)
     .then((response) => {
@@ -41,6 +39,13 @@ class LoginContainer extends Component{
       this.updateUser(response.data.sub, response.data.email)
     })
     .catch((err) => {console.log(err)})
+  }
+
+  //Upon mounting if a token exists try and retreive user data
+  componentDidMount(){
+    if (localStorage.userToken){
+      this.getUserData(localStorage.userToken)
+    }
   }
 
   render(){
@@ -59,7 +64,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       getUserData: (token) => {
         dispatch(fetchUserDataIfNeeded(token))
         .then(() => {
-          ownProps.history.push('/home')
+          //Upon getting user data in store reroute to /home
+          ownProps.history.push('/main')
         })
         .catch((err) => {console.log(err)})
       }

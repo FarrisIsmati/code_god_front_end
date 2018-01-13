@@ -1,16 +1,20 @@
+//GENERAL
 import React, {Component}         from 'react'
-
-import { toggleModalAdd,
-         toggleModalCreate
-       }                          from "../../../redux/actions/uiActions"
-import { toggleTopic,
-         addTopic,
-         deleteTopic
-       }                          from "../../../redux/actions/userActions"
 import { connect }                from 'react-redux'
 
-import topic                      from './topic.js'
-import toolbar                    from '../toolbar/toolbar.js'
+//REDUX
+import {
+         toggleTopic,
+         addTopic,
+         deleteTopic,
+         addSubtopic,
+         updateQuill,
+         deleteSubtopic
+       }                          from "../redux/actions/userActions"
+
+//COMPONENT
+import topic                      from '../components/topic/topic.js'
+import toolbar                    from '../components/toolbar/toolbar.js'
 
 class TopicContainer extends Component{
   constructor(props){
@@ -19,15 +23,19 @@ class TopicContainer extends Component{
     this.updateGridColumns = this.updateGridColumns.bind(this)
   }
 
+  //Updates style to accomodate for the proper number of columns
   updateGridColumns() {
     let percentage
-    const length = this.props.user.activeUser ? this.props.user.topics.filter((topic)=>{
+    const length = this.props.user.activeUser ?
+    this.props.user.topics.filter((topic)=>{
       return topic.show
     }).length : 0
 
-    100/length > 100 ? percentage = '0%' : percentage = String(100/length) + '% '
+    100/length > 100 ?
+     percentage = '0%' : percentage = String(100/length) + '% '
 
     let grids = (percentage).repeat(length)
+
     return {
       width: '100%',
       display: 'grid',
@@ -52,11 +60,7 @@ class TopicContainer extends Component{
       <div className="flex topics-holder">
         <Toolbar />
         <div style={this.updateGridColumns()}>
-          {
-            topics ?
-            topics :
-            null
-          }
+          { topics ? topics : null }
         </div>
       </div>
     )
@@ -70,11 +74,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModalAdd: ()=>{
-      dispatch(toggleModalAdd())
-    },
-    toggleModalCreate: ()=>{
-      dispatch(toggleModalCreate())
+    addSubtopic: (name, id, token) => {
+      dispatch(addSubtopic(name, id, token))
     },
     toggleTopic: (id, token, state)=>{
       dispatch(toggleTopic(id, token, state))
@@ -84,11 +85,17 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteTopic: (id, token, state)=>{
       dispatch(deleteTopic(id, token, state))
+    },
+    updateQuill: (topicId, subtopicId, data, state) => {
+      dispatch(updateQuill(topicId, subtopicId, data, state))
+    },
+    deleteSubtopic: (topicId, subtopicId, token, state) => {
+      dispatch(deleteSubtopic(topicId, subtopicId, token, state))
     }
   }
 }
 
-const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
+  const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
 const Topic = connect(mapStateToProps, mapDispatchToProps)(topic)
 
 export default connect(mapStateToProps)(TopicContainer)

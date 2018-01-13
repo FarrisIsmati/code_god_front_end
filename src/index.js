@@ -2,13 +2,15 @@ import React                from 'react'
 import ReactDOM             from 'react-dom'
 import thunkMiddleware      from 'redux-thunk'
 import { createLogger }     from 'redux-logger'
-import { createStore,
+import {
+         createStore,
          applyMiddleware
        }                    from 'redux'
 
 import Root                 from './components/structure/Root'
 import rootReducer          from './redux/reducers/rootReducer'
 
+//Import global SCSS File
 import './stylesheets/index.css'
 import './stylesheets/highlightjs.css'
 
