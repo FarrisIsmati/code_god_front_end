@@ -19,12 +19,14 @@ class Quill extends Component {
   }
 
   handleChange(value) {
+    // console.log(this.props.subtopicText)
+    // this.setState({text:value})
     this.props.updateQuill(this.props.topicId, this.props.subtopicId, value, this.props.data)
   }
 
   saveState() {
     axios.put('http://localhost:3001/data/user/topic/' + this.props.topicId + '/' + this.props.subtopicId + '/' + localStorage.userToken, {
-      text: this.state.text
+      text: this.props.subtopicText
     })
     .then((res)=>{
       console.log(res)
@@ -47,7 +49,7 @@ class Quill extends Component {
 
     return (
       <div className="quill-holder">
-        <ReactQuill ref="quill" theme="bubble" modules={modules} value={'<p>test</p>'}
+        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText}
                     onChange={this.handleChange}>
         </ReactQuill>
         {
