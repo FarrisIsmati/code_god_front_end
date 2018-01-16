@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://FarrisIsmati.github.io/studyjs_front_end",
-  "deploy": "npm run build&&gh-pages -d build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
   "dependencies": {
     "axios": "^0.17.1",
     "cross-fetch": "^1.1.1",
