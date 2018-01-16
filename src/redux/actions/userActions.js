@@ -38,7 +38,7 @@ function addTopicState(json) {
 
 export function addTopic(name, token) {
   return function(dispatch){
-    axios.post('http://localhost:3001/data/user/topic/' + token,{
+    axios.post('https://studyjs-ga.herokuapp.com/data/user/topic/' + token,{
       "name": name
     })
     .then((json)=>{
@@ -57,7 +57,7 @@ function deleteSubtopicState(topicId, subtopicId, token, state) {
 
 export function deleteSubtopic(topicId, subtopicId, token, state) {
   return function(dispatch){
-    axios.delete('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token)
+    axios.delete('https://studyjs-ga.herokuapp.com/data/user/topic/' + topicId + '/' + subtopicId + '/' + token)
     .then(()=>{
       dispatch(deleteSubtopicState(topicId, subtopicId, token, state))
     })
@@ -74,11 +74,11 @@ function addSubtopicState(user) {
 
 export function addSubtopic(name, id, token) {
   return function(dispatch){
-    axios.post('http://localhost:3001/data/user/topic/' + id + '/' + token,{
+    axios.post('https://studyjs-ga.herokuapp.com/data/user/topic/' + id + '/' + token,{
       "name": name
     })
     .then(()=>{
-      axios.get('http://localhost:3001/data/user/' + token)
+      axios.get('https://studyjs-ga.herokuapp.com/data/user/' + token)
       .then((user)=>{
         dispatch(addSubtopicState(user))
       })
@@ -97,7 +97,7 @@ function deletingTopicState(deletedTopicState) {
 export function deleteTopic(id, token, state) {
   return function(dispatch){
     const deletedTopicState = deleteTopicState(state, id)
-    axios.delete('http://localhost:3001/data/user/topic/' + id + '/' + token)
+    axios.delete('https://studyjs-ga.herokuapp.com/data/user/topic/' + id + '/' + token)
     .then(()=>{
       dispatch(deletingTopicState(deletedTopicState))
     })
@@ -115,7 +115,7 @@ function toggleTopicState(topicShowState) {
 export function toggleTopic(id, token, state) {
   return function(dispatch){
     const topicShowState = modifyTopic(state, id)
-    axios.put('http://localhost:3001/data/user/topics/' + token, topicShowState.topics)
+    axios.put('https://studyjs-ga.herokuapp.com/data/user/topics/' + token, topicShowState.topics)
     .then(()=>{
       dispatch(toggleTopicState(topicShowState))
     })
@@ -158,7 +158,7 @@ function receiveUser(json, normalize) {
 function fetchUserData(token) {
   return function (dispatch) {
     dispatch(requestUser(token))
-    return fetch(`http://localhost:3001/data/user/` + token)
+    return fetch(`https://studyjs-ga.herokuapp.com/data/user/` + token)
       .then(
         response => response.json(),
         error => console.log('An error occurred.', error)

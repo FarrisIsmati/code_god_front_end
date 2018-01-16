@@ -6,7 +6,7 @@ import axios                      from 'axios'
 //REDUX
 import { fetchUserDataIfNeeded }  from "../redux/actions/userActions"
 
-//COMPONENTS
+//COMPONENTS/
 import LoginPage                  from '../components/login/loginPage.js'
 
 class LoginContainer extends Component{
@@ -21,7 +21,7 @@ class LoginContainer extends Component{
 
   //Create a user after login then get user data in the store
   updateUser(googleId, email) {
-    axios.post(`http://localhost:3001/auth/google`, {
+    axios.post(`https://studyjs-ga.herokuapp.com/auth/google`, {
       googleId: googleId,
       username: email
     })
