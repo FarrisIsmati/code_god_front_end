@@ -2,9 +2,12 @@
   "name": "code_god_front_end",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://FarrisIsmati.github.io//studyjs_front_end",
+  "deploy": "npm run build&&gh-pages -d build",
   "dependencies": {
     "axios": "^0.17.1",
     "cross-fetch": "^1.1.1",
+    "gh-pages": "^1.1.0",
     "highlight.js": "^9.12.0",
     "immutability-helper": "^2.6.4",
     "normalizr": "^3.2.4",
