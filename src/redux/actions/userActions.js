@@ -68,7 +68,7 @@ export function deleteSubtopic(topicId, subtopicId, token, state) {
 function addSubtopicState(user) {
   return {
     type: ADD_SUBTOPIC,
-    data: user.data.domain
+    data: user.data.user.domain
   }
 }
 
@@ -149,7 +149,7 @@ function receiveUser(json, normalize) {
     type: RECEIVE_USER,
     payload: {
       activeUser: true,
-      user: json,
+      user: json.user,
       receivedAt: Date.now()
     }
   }
