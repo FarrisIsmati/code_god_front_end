@@ -2,7 +2,7 @@
   "name": "code_god_front_end",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://FarrisIsmati.github.io//studyjs_front_end",
+  "homepage": "https://FarrisIsmati.github.io/studyjs_front_end",
   "deploy": "npm run build&&gh-pages -d build",
   "dependencies": {
     "axios": "^0.17.1",
