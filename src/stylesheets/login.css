@@ -36,6 +36,10 @@
   transition: background-color 0.1s ease;
 }
 
+.loading-holder {
+  margin-top: 50px;
+}
+
 .declaration {
   color: #ff8e24;
 }
