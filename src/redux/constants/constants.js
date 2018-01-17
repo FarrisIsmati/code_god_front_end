@@ -6,6 +6,7 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 //Data
 export const DELETE_TOPIC = 'DELTE_TOPIC'
 export const TOGGLE_TOPIC = 'TOGGLE_TOPIC'
+export const UPDATE_TOPIC_NAME = 'UPDATE_TOPIC_NAME'
 export const ADD_TOPIC = 'ADD_TOPIC'
 export const ADD_SUBTOPIC = 'ADD_SUBTOPIC'
 export const UPDATE_QUILL = 'UPDATE_QUILL'

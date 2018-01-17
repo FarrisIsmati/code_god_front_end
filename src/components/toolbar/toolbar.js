@@ -68,7 +68,7 @@ class Toolbar extends  Component {
 
       return(
         <div>
-          <ModalForm toggle={this.state.showModalAdd} title={'Add Topic'} dispatch={()=>{this.toggleModal('showModalAdd')}} id={"modal-dropdown"} >
+          <ModalForm toggle={this.state.showModalAdd} title={'Topics'} dispatch={()=>{this.toggleModal('showModalAdd')}} id={"modal-dropdown"} >
             {
               this.props.user.activeUser ?
                 <ListGroup>
@@ -89,11 +89,11 @@ class Toolbar extends  Component {
           </ModalForm>
 
           <div className="flex flex-column toolbar-container">
-            <OverlayTrigger placement="left" overlay={tooltip('Add/Delete Topics')}>
-              <Glyphicon onClick={()=>{this.toggleModal('showModalAdd')}} glyph="glyphicon glyphicon-plus" />
-            </OverlayTrigger>
             <OverlayTrigger placement="left" overlay={tooltip('Create Topic')}>
               <Glyphicon onClick={()=>{this.toggleModal('showModalCreate')}} glyph="glyphicon glyphicon-pencil" />
+            </OverlayTrigger>
+            <OverlayTrigger placement="left" overlay={tooltip('Add/Delete Topics')}>
+              <Glyphicon onClick={()=>{this.toggleModal('showModalAdd')}} glyph="glyphicon glyphicon-menu-hamburger" />
             </OverlayTrigger>
           </div>
         </div>

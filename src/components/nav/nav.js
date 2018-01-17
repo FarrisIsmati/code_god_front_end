@@ -1,5 +1,5 @@
 //GENERAL
-import React           from 'react'
+import React              from 'react'
 
 import '../../stylesheets/flex.css'
 import '../../stylesheets/nav.css'

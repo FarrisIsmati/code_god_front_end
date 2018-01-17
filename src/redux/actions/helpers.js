@@ -31,6 +31,26 @@ export function modifyTopic(state, id){
   return topicShowState
 }
 
+//Update Topic Name
+export function updatedTopicName(id, data, state){
+  const index = state.topics.findIndex((topic)=>{
+    return topic._id === id
+  })
+
+  const updatedTopicNameState = update(state,
+    {topics:
+      { [index]:
+        { name: {
+          $set: data
+          }
+        }
+      }
+    }
+  )
+
+  return updatedTopicNameState
+}
+
 export function deleteTopicState(state, id){
   const index = state.topics.findIndex((topic)=>{
     return topic._id === id

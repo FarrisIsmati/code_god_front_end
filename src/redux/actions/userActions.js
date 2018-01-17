@@ -10,13 +10,15 @@ import {
   ADD_TOPIC,
   DELETE_TOPIC,
   UPDATE_QUILL,
-  DELETE_SUBTOPIC
+  DELETE_SUBTOPIC,
+  UPDATE_TOPIC_NAME
 }                          from "../constants/constants"
 import {
          modifyTopic,
          deleteTopicState,
          updateSubtopic,
-         deletedSubtopic
+         deletedSubtopic,
+         updatedTopicName
        }                   from './helpers.js'
 
 //Update Quill State
@@ -47,6 +49,22 @@ export function addTopic(name, token) {
   }
 }
 
+export function updateTopicNameState(state) {
+  return {
+    type: UPDATE_TOPIC_NAME,
+    updatedState: state
+  }
+}
+
+export function updateTopicName(id, token, data, state) {
+  return function(dispatch){
+    const updatedTopicNameState = updatedTopicName(id, data, state)
+    //AXIOS CALL TO BACKEND
+    dispatch(updateTopicNameState(updatedTopicNameState))
+  }
+}
+
+//Deleting a subtopic
 function deleteSubtopicState(topicId, subtopicId, token, state) {
   const deletedSubtopicState = deletedSubtopic(topicId, subtopicId, state)
   return {

@@ -5,6 +5,7 @@ import { connect }                from 'react-redux'
 //REDUX
 import {
          toggleTopic,
+         updateTopicName,
          addTopic,
          deleteTopic,
          addSubtopic,
@@ -79,6 +80,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleTopic: (id, token, state)=>{
       dispatch(toggleTopic(id, token, state))
+    },
+    updateTopicName: (id, token, data, state)=>{
+      dispatch(updateTopicName(id, token, data, state))
     },
     addTopic: (name, token)=>{
       dispatch(addTopic(name, token))

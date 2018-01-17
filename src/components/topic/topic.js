@@ -8,7 +8,7 @@ import TopicHeader        from './topicHeader.js'
 import '../../stylesheets/flex.css'
 import '../../stylesheets/topic.css'
 
-const Topic = ({updateQuill, deleteSubtopic, addSubtopic, toggleTopic, topic, state, topicIndex}) => {
+const Topic = ({updateQuill, updateTopicName, deleteSubtopic, addSubtopic, toggleTopic, topic, state, topicIndex}) => {
   //Change background color of topic based on its index pairity
   const backgroundColor=()=>{
     if (topicIndex % 2 === 0 || topicIndex === 0){
@@ -21,6 +21,7 @@ const Topic = ({updateQuill, deleteSubtopic, addSubtopic, toggleTopic, topic, st
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
       <TopicHeader
+        updateTopicName={updateTopicName}
         addSubtopic={addSubtopic}
         toggleTopic={toggleTopic}
         topic={topic}

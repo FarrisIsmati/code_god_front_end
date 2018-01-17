@@ -3,7 +3,7 @@ import React, { Component }           from 'react'
 import {
          Button,
          FormControl,
-         Glyphicon
+         Glyphicon,
        }                              from 'react-bootstrap'
 
 //COMPONENTS
@@ -16,8 +16,14 @@ import '../../stylesheets/modal.css'
 class TopicHeader extends Component{
   constructor(props){
     super(props)
-    this.state = { showModal: false }
+    this.state = {
+      showModal: false,
+      edit: false
+     }
 
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.submitInputEdit = this.submitInputEdit.bind(this)
+    this.toggleEdit = this.toggleEdit.bind(this)
     this.toggleState = this.toggleState.bind(this)
     this.createSubtopic = this.createSubtopic.bind(this)
     this.backgroundColor = this.backgroundColor.bind(this)
@@ -36,9 +42,33 @@ class TopicHeader extends Component{
     }
   }
 
+  handleInputChange(e){
+    this.setState({topicTitle: e.target.value})
+  }
+
   createSubtopic(e){
     e.preventDefault()
     this.props.addSubtopic(e.target[0].value, this.props.topic._id, localStorage.userToken)
+  }
+
+  toggleEdit(){
+    this.setState({
+      edit: !this.state.edit
+    })
+  }
+
+  submitInputEdit(e){
+    e.preventDefault()
+    this.toggleEdit()
+    this.props.updateTopicName(this.props.topic._id, localStorage.userToken, this.state.topicTitle, this.props.state)
+  }
+
+  componentDidMount(){
+    this.refs.topicTitle ?
+    this.setState({
+      topicTitle: this.refs.topicTitle.outerText
+    }) :
+    null
   }
 
   render(){
@@ -46,11 +76,7 @@ class TopicHeader extends Component{
       <div>
         <ModalForm toggle={this.state.showModal} title={'Add Subtopic'} dispatch={()=>this.toggleState()}>
           <form onSubmit={(e) => {this.createSubtopic(e); this.toggleState()}}>
-
-
             <label >{this.props.topic.name}</label>
-
-
               <FormControl
                 type="text"
                 placeholder="Enter text"
@@ -60,11 +86,13 @@ class TopicHeader extends Component{
         </ModalForm>
 
         <div style={{backgroundColor: this.backgroundColor()}} className="flex flex-spacebetween topic-header-holder">
-          <h2>{this.props.topic.name}</h2>
-          <div className="flex glyphicon-header-holder">
-            <Glyphicon onClick={()=>this.toggleState()} glyph="glyphicon glyphicon-plus" />
-            <Glyphicon onClick={()=>this.props.toggleTopic(this.props.topic._id, localStorage.userToken, this.props.state)} glyph="glyphicon glyphicon-remove" />
-          </div>
+          {
+            !this.state.edit ?
+            <h2 ref="topicTitle" onDoubleClick={()=>{this.toggleEdit()}}>{this.props.topic.name}</h2>:
+            <form onSubmit={(e)=>{this.submitInputEdit(e)}}>
+              <input className="topic-input" type="text" name="topicInput" value={this.state.topicTitle} onChange={(e)=>{this.handleInputChange(e)}}/>
+            </form>
+          }
         </div>
       </div>
     )
