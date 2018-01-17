@@ -1,14 +1,5 @@
 //GENERAL
 import React              from 'react'
-import { connect }        from 'react-redux'
-
-//REDUX
-import {
-        toggleTopic,
-        addSubtopic,
-        updateQuill,
-        deleteSubtopic
-       }                  from "../../redux/actions/userActions"
 
 //COMPONENTS
 import Subtopics          from './subtopic.js'

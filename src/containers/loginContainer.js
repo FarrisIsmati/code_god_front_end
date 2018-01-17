@@ -33,6 +33,7 @@ class LoginContainer extends Component{
 
   //Get Login response and store google's JWT in local storage
   responseGoogle(res) {
+    console.log(res)
     axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=` + res.tokenId)
     .then((response) => {
       localStorage.setItem('userToken', res.tokenId)
