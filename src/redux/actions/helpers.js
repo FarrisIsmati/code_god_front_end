@@ -1,5 +1,6 @@
 import update from 'immutability-helper'
 
+//Copy of state with a toggled target active
 export function modifyTopic(state, id){
   //Toggles topics state to show on or off
   let topicShowState
@@ -31,7 +32,7 @@ export function modifyTopic(state, id){
   return topicShowState
 }
 
-//Update Topic Name
+//Copy of state with an updated a topic name
 export function updatedTopicName(id, data, state){
   const index = state.topics.findIndex((topic)=>{
     return topic._id === id
@@ -51,6 +52,7 @@ export function updatedTopicName(id, data, state){
   return updatedTopicNameState
 }
 
+//Copy of state with a deleted a topic
 export function deleteTopicState(state, id){
   const index = state.topics.findIndex((topic)=>{
     return topic._id === id
@@ -65,6 +67,7 @@ export function deleteTopicState(state, id){
   return splicedTopic
 }
 
+//Copy of state with an updated subtopic in a specific topic
 export function updateSubtopic(topicId, subtopicId, dataText, state){
   const indexTopic = state.topics.findIndex((topic)=>{
     return topic._id === topicId
@@ -90,6 +93,7 @@ export function updateSubtopic(topicId, subtopicId, dataText, state){
   return updatedSubtopic
 }
 
+//Copy of state with a deleted subtopic in a specific topic
 export function deletedSubtopic(topicId, subtopicId, state){
   const indexTopic = state.topics.findIndex((topic)=>{
     return topic._id === topicId

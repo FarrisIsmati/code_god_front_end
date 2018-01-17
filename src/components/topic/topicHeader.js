@@ -85,7 +85,7 @@ class TopicHeader extends Component{
           {
             !this.state.edit ?
             <h2 ref="topicTitle" onDoubleClick={()=>{this.toggleEdit()}}>{this.props.topic.name}</h2>:
-            <form onSubmit={(e)=>{this.submitInputEdit(e)}}>
+            <form className="topic-input-form" onSubmit={(e)=>{this.submitInputEdit(e)}}>
               <input className="topic-input" type="text" name="topicInput" value={this.state.topicTitle} onChange={(e)=>{this.handleInputChange(e)}}/>
             </form>
           }

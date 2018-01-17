@@ -41,7 +41,12 @@
   transition: color .3s ease;
 }
 
+.topic-input-form {
+  width: 100%;
+}
+
 .topic-input {
+  width: 100%;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 1.7em;
