@@ -64,11 +64,7 @@ class TopicHeader extends Component{
   }
 
   componentDidMount(){
-    this.refs.topicTitle ?
-    this.setState({
-      topicTitle: this.refs.topicTitle.outerText
-    }) :
-    null
+    this.refs.topicTitle && this.setState({topicTitle: this.refs.topicTitle.outerText})
   }
 
   render(){
@@ -93,6 +89,10 @@ class TopicHeader extends Component{
               <input className="topic-input" type="text" name="topicInput" value={this.state.topicTitle} onChange={(e)=>{this.handleInputChange(e)}}/>
             </form>
           }
+          <div className="flex glyphicon-header-holder">
+            <Glyphicon onClick={()=>this.toggleState()} glyph="glyphicon glyphicon-plus" />
+            <Glyphicon onClick={()=>this.props.toggleTopic(this.props.topic._id, localStorage.userToken, this.props.state)} glyph="glyphicon glyphicon-remove" />
+          </div>
         </div>
       </div>
     )

@@ -49,6 +49,7 @@ export function addTopic(name, token) {
   }
 }
 
+//Update new topic name
 export function updateTopicNameState(state) {
   return {
     type: UPDATE_TOPIC_NAME,
@@ -59,8 +60,8 @@ export function updateTopicNameState(state) {
 export function updateTopicName(id, token, data, state) {
   return function(dispatch){
     const updatedTopicNameState = updatedTopicName(id, data, state)
-    //AXIOS CALL TO BACKEND
     dispatch(updateTopicNameState(updatedTopicNameState))
+    axios.put('http://localhost:3001/data/user/topic/' + id + '/' + token, updatedTopicNameState.topics)
   }
 }
 
