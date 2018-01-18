@@ -7,6 +7,7 @@ import {
           TOGGLE_TOPIC,
           ADD_SUBTOPIC,
           ADD_TOPIC,
+          INVALIDATE_USER,
           DELETE_TOPIC,
           UPDATE_QUILL,
           DELETE_SUBTOPIC,
@@ -36,6 +37,10 @@ function user(
         googleId: action.payload.user.googleId,
         lastUpdated: action.payload.receivedAt,
         topics: action.payload.user.domain.topics
+      })
+    case INVALIDATE_USER:
+      return Object.assign({}, state, {
+        isFetching: false
       })
     default:
       return state
@@ -83,6 +88,7 @@ export function dataReducer(state = default_state, action) {
         ...state, ...action.topicShowState
       }
     case RECEIVE_USER:
+    case INVALIDATE_USER:
     case REQUEST_USER:
       return {
         ...state, ...user(state[action.userId], action)

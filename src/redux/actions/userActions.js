@@ -11,15 +11,16 @@ import {
   DELETE_TOPIC,
   UPDATE_QUILL,
   DELETE_SUBTOPIC,
+  INVALIDATE_USER,
   UPDATE_TOPIC_NAME
 }                          from "../constants/constants"
 import {
-         modifyTopic,
-         deleteTopicState,
-         updateSubtopic,
-         deletedSubtopic,
-         updatedTopicName
-       }                   from './helpers.js'
+ modifyTopic,
+ deleteTopicState,
+ updateSubtopic,
+ deletedSubtopic,
+ updatedTopicName
+}                          from './helpers.js'
 
 //Update Quill State
 export function updateQuill(topicId, subtopicId, data, state){
@@ -163,6 +164,12 @@ function requestUser(token) {
   }
 }
 
+function invalidateUser() {
+  return {
+    type: INVALIDATE_USER
+  }
+}
+
 function receiveUser(json, normalize) {
   return {
     type: RECEIVE_USER,
@@ -179,11 +186,14 @@ function fetchUserData(token) {
     dispatch(requestUser(token))
     return fetch(`http://localhost:3001/data/user/` + token)
       .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error)
+        response => {
+          dispatch(invalidateUser())
+          return response.json()
+        }
       )
-      .then(json =>
-        dispatch(receiveUser(json))
+      .then(json => {
+          return dispatch(receiveUser(json))
+        }
       )
   }
 }
