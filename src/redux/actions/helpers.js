@@ -52,6 +52,32 @@ export function updatedTopicName(id, data, state){
   return updatedTopicNameState
 }
 
+export function updatedSubtopicName(topicId, subtopicId, token, data, state){
+  const indexTopic = state.topics.findIndex((topic)=>{
+    return topic._id === topicId
+  })
+
+  const indexSubtopic = state.topics[indexTopic].subtopics.findIndex((subtopic)=>{
+    return subtopic._id === subtopicId
+  })
+
+  const updatedSubtopicNameState = update(state,
+    { topics:
+      { [indexTopic]:
+        { subtopics:
+          { [indexSubtopic]:
+            { name:
+              { $set: data }
+            }
+          }
+        }
+      }
+    }
+  )
+
+  return updatedSubtopicNameState
+}
+
 //Copy of state with a deleted a topic
 export function deleteTopicState(state, id){
   const index = state.topics.findIndex((topic)=>{

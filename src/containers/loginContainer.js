@@ -68,7 +68,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           //Upon getting user data in store reroute to /home
           ownProps.history.push('/main')
         })
-        .catch((err) => {console.log(err)})
+        .catch((err) => {
+          console.log(err)
+        })
       }
   }
 }

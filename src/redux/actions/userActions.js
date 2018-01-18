@@ -12,14 +12,16 @@ import {
   UPDATE_QUILL,
   DELETE_SUBTOPIC,
   INVALIDATE_USER,
-  UPDATE_TOPIC_NAME
+  UPDATE_TOPIC_NAME,
+  UPDATE_SUBTOPIC_NAME
 }                          from "../constants/constants"
 import {
  modifyTopic,
  deleteTopicState,
  updateSubtopic,
  deletedSubtopic,
- updatedTopicName
+ updatedTopicName,
+ updatedSubtopicName
 }                          from './helpers.js'
 
 //Update Quill State
@@ -50,8 +52,8 @@ export function addTopic(name, token) {
   }
 }
 
-//Update new topic name
-export function updateTopicNameState(state) {
+//Update topic name
+function updateTopicNameState(state) {
   return {
     type: UPDATE_TOPIC_NAME,
     updatedState: state
@@ -63,6 +65,22 @@ export function updateTopicName(id, token, data, state) {
     const updatedTopicNameState = updatedTopicName(id, data, state)
     dispatch(updateTopicNameState(updatedTopicNameState))
     axios.put('http://localhost:3001/data/user/topic/' + id + '/' + token, updatedTopicNameState.topics)
+  }
+}
+
+//Update subtopic name
+function updateSubtopicNameState(state) {
+  return {
+    type: UPDATE_SUBTOPIC_NAME,
+    updatedState: state
+  }
+}
+
+export function updateSubtopicName(topicId, subtopicId, token, data, state) {
+  return function(dispatch){
+    const updatedSubtopicNameState = updatedSubtopicName(topicId, subtopicId, token, data, state)
+    dispatch(updateSubtopicNameState(updatedSubtopicNameState))
+    axios.put('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token, {text: data, value: 'name'})
   }
 }
 

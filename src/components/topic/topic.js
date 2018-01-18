@@ -2,13 +2,13 @@
 import React              from 'react'
 
 //COMPONENTS
-import Subtopics          from './subtopic.js'
+import Subtopic          from './subtopic.js'
 import TopicHeader        from './topicHeader.js'
 
 import '../../stylesheets/flex.css'
 import '../../stylesheets/topic.css'
 
-const Topic = ({updateQuill, updateTopicName, deleteSubtopic, addSubtopic, toggleTopic, topic, state, topicIndex}) => {
+const Topic = ({updateQuill, updateSubtopicName, updateTopicName, deleteSubtopic, addSubtopic, toggleTopic, topic, state, topicIndex}) => {
   //Change background color of topic based on its index pairity
   const backgroundColor=()=>{
     if (topicIndex % 2 === 0 || topicIndex === 0){
@@ -17,6 +17,24 @@ const Topic = ({updateQuill, updateTopicName, deleteSubtopic, addSubtopic, toggl
       return "#C1C1C1"
     }
   }
+
+  const Subtopics = topic.subtopics.map((subtopic, i) => {
+    return(
+      <Subtopic
+        updateSubtopicName = {updateSubtopicName}
+        topic={topic}
+        topicId={topic._id}
+        topicIndex={topicIndex}
+        user={state}
+        index={i}
+        updateQuill={updateQuill}
+        deleteSubtopic={deleteSubtopic}
+        subtopic={subtopic}
+        subtopicId={subtopic._id}
+        key={i}
+      />
+    )
+  })
 
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
@@ -28,16 +46,21 @@ const Topic = ({updateQuill, updateTopicName, deleteSubtopic, addSubtopic, toggl
         state={state}
         topicIndex={topicIndex}
       />
-      <Subtopics
-        topicIndex={topicIndex}
-        updateQuill={updateQuill}
-        deleteSubtopic={deleteSubtopic}
-        subtopics={topic.subtopics}
-        user={state}
-        topicId={topic._id}
-      />
+
+      <div className="subtopics-holder">
+        {Subtopics}
+      </div>
     </div>
   )
 }
+
+// <Subtopics
+//   topicIndex={topicIndex}
+//   updateQuill={updateQuill}
+//   deleteSubtopic={deleteSubtopic}
+//   subtopics={topic.subtopics}
+//   user={state}
+//   topicId={topic._id}
+// />
 
 export default Topic

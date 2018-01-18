@@ -6,6 +6,7 @@ import { connect }                from 'react-redux'
 import {
          toggleTopic,
          updateTopicName,
+         updateSubtopicName,
          addTopic,
          deleteTopic,
          addSubtopic,
@@ -84,6 +85,9 @@ const mapDispatchToProps = (dispatch) => {
     updateTopicName: (id, token, data, state)=>{
       dispatch(updateTopicName(id, token, data, state))
     },
+    updateSubtopicName: (topicId, subtopicId, token, data, state)=>{
+      dispatch(updateSubtopicName(topicId, subtopicId, token, data, state))
+    },
     addTopic: (name, token)=>{
       dispatch(addTopic(name, token))
     },
@@ -99,7 +103,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-  const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
+const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
 const Topic = connect(mapStateToProps, mapDispatchToProps)(topic)
 
 export default connect(mapStateToProps)(TopicContainer)

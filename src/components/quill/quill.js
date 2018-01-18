@@ -25,7 +25,7 @@ class Quill extends Component {
   //Save State
   saveState() {
     axios.put('http://localhost:3001/data/user/topic/' + this.props.topicId + '/' + this.props.subtopicId + '/' + localStorage.userToken, {
-      text: this.props.subtopicText
+      text: this.props.subtopicText, value: 'data'
     })
     .then((res)=>{
       console.log(res)
