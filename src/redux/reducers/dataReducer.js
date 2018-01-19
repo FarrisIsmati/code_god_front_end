@@ -4,6 +4,7 @@ import {
           REQUEST_USER,
           RECEIVE_USER,
           LOGOUT_USER,
+          INVALIDATE_USER,
           TOGGLE_TOPIC,
           ADD_SUBTOPIC,
           ADD_TOPIC,
@@ -35,6 +36,10 @@ function user(
         googleId: action.payload.user.googleId,
         lastUpdated: action.payload.receivedAt,
         topics: action.payload.user.domain.topics
+      })
+    case INVALIDATE_USER:
+      return Object.assign({}, state, {
+        isFetching: false
       })
     default:
       return state
@@ -82,6 +87,7 @@ export function dataReducer(state = default_state, action) {
       return {
         ...state, ...user(state[action.userId], action)
       }
+    case INVALIDATE_USER:
     case LOGOUT_USER:
       return {
         ...action.payload

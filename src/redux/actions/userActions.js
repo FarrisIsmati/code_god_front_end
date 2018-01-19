@@ -5,6 +5,7 @@ import {
   REQUEST_USER,
   RECEIVE_USER,
   LOGOUT_USER,
+  INVALIDATE_USER,
   TOGGLE_TOPIC,
   ADD_SUBTOPIC,
   ADD_TOPIC,
@@ -155,17 +156,23 @@ function receiveUser(json, normalize) {
   }
 }
 
+function invalidateUser() {
+   return {
+     type: INVALIDATE_USER
+   }
+ }
+
 function fetchUserData(token) {
   return function (dispatch) {
     dispatch(requestUser(token))
     return fetch(`http://localhost:3001/data/user/` + token)
       .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error)
+        response => {
+          dispatch(invalidateUser())
+          return response.json()
+        }
       )
-      .then(json =>
-        dispatch(receiveUser(json))
-      )
+      .then(json => dispatch(receiveUser(json)))
   }
 }
 
