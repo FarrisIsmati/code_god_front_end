@@ -1,17 +1,19 @@
 import update                 from 'immutability-helper'
 
 import {
-          REQUEST_USER,
-          RECEIVE_USER,
-          LOGOUT_USER,
-          INVALIDATE_USER,
-          TOGGLE_TOPIC,
-          ADD_SUBTOPIC,
-          ADD_TOPIC,
-          DELETE_TOPIC,
-          UPDATE_QUILL,
-          DELETE_SUBTOPIC
-        }                     from "../constants/constants"
+        REQUEST_USER,
+        RECEIVE_USER,
+        LOGOUT_USER,
+        TOGGLE_TOPIC,
+        ADD_SUBTOPIC,
+        ADD_TOPIC,
+        INVALIDATE_USER,
+        DELETE_TOPIC,
+        UPDATE_QUILL,
+        DELETE_SUBTOPIC,
+        UPDATE_TOPIC_NAME,
+        UPDATE_SUBTOPIC_NAME
+}                            from "../constants/constants"
 
 const default_state = {
   activeUser: false
@@ -60,6 +62,14 @@ export function dataReducer(state = default_state, action) {
       )
       return {
         ...state, ...newTopicData
+      }
+    case UPDATE_TOPIC_NAME:
+      return {
+        ...state, ...action.updatedState
+      }
+    case UPDATE_SUBTOPIC_NAME:
+      return {
+        ...state, ...action.updatedState
       }
     case DELETE_SUBTOPIC:
       return {
