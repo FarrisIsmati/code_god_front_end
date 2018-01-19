@@ -40,3 +40,7 @@
 button .list-group-item {
   margin: 0;
 }
+
+.topic-list-holder {
+  margin-top: 5px;
+}
