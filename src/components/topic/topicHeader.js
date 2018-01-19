@@ -63,7 +63,7 @@ class TopicHeader extends Component{
           <h2>{this.props.topic.name}</h2>
           <div className="flex glyphicon-header-holder">
             <Glyphicon onClick={()=>this.toggleState()} glyph="glyphicon glyphicon-plus" />
-            <Glyphicon onClick={()=>this.props.toggleTopic(this.props.topic._id, localStorage.userToken, this.props.state)} glyph="glyphicon glyphicon-remove" />
+            <Glyphicon onClick={()=>this.props.toggleTopic(this.props.topic._id, localStorage.userToken, this.props.state)} glyph="glyphicon glyphicon-minus" />
           </div>
         </div>
       </div>

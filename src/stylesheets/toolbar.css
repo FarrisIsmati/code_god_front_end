@@ -8,10 +8,16 @@
   z-index: 99;
 }
 
-.toolbar-container .glyphicon{
-  font-size: 1.5em;
+.toolbar-container .glyphicon {
+  font-size: 1.8em;
 }
 
-.topic-list-holder {
-  margin-top: 5px;
+.toolbar-container span:nth-child(2){
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .toolbar-container .glyphicon{
+    font-size: 1.2em;
+  }
 }

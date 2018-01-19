@@ -1,3 +1,4 @@
+
 .panel {
   border-radius: 0px;
   margin: 0;
@@ -15,26 +16,27 @@
   padding: 0;
 }
 
-.subtopic-holder {
-}
-
-.subtopics-holder {
-}
-
-.subtopic-header .trash-glyph{
+.subtopic-holder .trash-glyph{
   color: rgba(0,0,0,0);
-  visibility: hidden;
   transition: color .2s ease;
   visibility: hidden;
 }
 
-.subtopic-header:hover .trash-glyph{
+.subtopic-holder:hover .trash-glyph{
   color: #3d3d3f;
   visibility: visible;
   transition: color .3s ease;
 }
 
-.subtopic-header .trash-glyph:hover {
+.subtopic-holder .trash-glyph:hover {
   color: #949499 !important;
   transition: color .3s ease;
+}
+
+@media (max-width: 768px) {
+  .subtopic-header .trash-glyph{
+    font-size: 1.2em;
+    color: #949499 !important;
+    visibility: visible;
+  }
 }
