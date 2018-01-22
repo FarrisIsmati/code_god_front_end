@@ -85,8 +85,10 @@ function updateTopicNameState(state) {
 export function updateTopicName(id, token, data, state) {
   return function(dispatch){
     const updatedTopicNameState = updatedTopicName(id, data, state)
-    dispatch(updateTopicNameState(updatedTopicNameState))
-    axios.put('http://localhost:3001/data/user/topic/' + id + '/' + token, updatedTopicNameState.topics)
+    axios.put('http://localhost:3001/data/user/topic/' + id + '/' + token, updatedTopicNameState.topic)
+    .then(()=>{
+      dispatch(updateTopicNameState(updatedTopicNameState.state))
+    })
   }
 }
 
@@ -119,6 +121,7 @@ function addSubtopicState(user) {
 }
 
 export function addSubtopic(name, id, token) {
+  console.log(id)
   return function(dispatch){
     axios.post('http://localhost:3001/data/user/topic/' + id + '/' + token,{
       "name": name

@@ -7,9 +7,11 @@ import {
          toggleTopic,
          addTopic,
          deleteTopic,
+         updateTopicName,
          addSubtopic,
+         deleteSubtopic,
          updateQuill,
-         deleteSubtopic
+
        }                          from "../redux/actions/userActions"
 
 //COMPONENT
@@ -74,23 +76,26 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSubtopic: (name, id, token) => {
-      dispatch(addSubtopic(name, id, token))
-    },
-    toggleTopic: (id, token, state)=>{
-      dispatch(toggleTopic(id, token, state))
-    },
     addTopic: (name, token)=>{
       dispatch(addTopic(name, token))
     },
     deleteTopic: (id, token, state)=>{
       dispatch(deleteTopic(id, token, state))
     },
-    updateQuill: (topicId, subtopicId, data, state) => {
-      dispatch(updateQuill(topicId, subtopicId, data, state))
+    toggleTopic: (id, token, state)=>{
+      dispatch(toggleTopic(id, token, state))
+    },
+    updateTopicName: (id, token, data, state)=>{
+      dispatch(updateTopicName(id, token, data, state))
+    },
+    addSubtopic: (name, id, token) => {
+      dispatch(addSubtopic(name, id, token))
     },
     deleteSubtopic: (topicId, subtopicId, token, state) => {
       dispatch(deleteSubtopic(topicId, subtopicId, token, state))
+    },
+    updateQuill: (topicId, subtopicId, data, state) => {
+      dispatch(updateQuill(topicId, subtopicId, data, state))
     }
   }
 }

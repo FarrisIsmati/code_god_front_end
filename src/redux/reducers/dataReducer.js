@@ -76,6 +76,7 @@ export function dataReducer(state = default_state, action) {
         ...state, ...action.deletedSubtopicState
       }
     case ADD_SUBTOPIC:
+      console.log(action.data.topics)
       const newSubtopicData = update(state,
         {topics:
           {$set: action.data.topics}

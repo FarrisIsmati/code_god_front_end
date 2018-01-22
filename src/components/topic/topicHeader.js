@@ -40,7 +40,12 @@ class TopicHeader extends Component{
 
   submitTopicName(e) {
     e.preventDefault()
-    console.log(this.state.topicName)
+    this.props.updateTopicName(
+      this.props.topic._id,
+      localStorage.userToken,
+      this.state.topicName,
+      this.props.state
+    )
   }
 
   onChangeHandle(e) {

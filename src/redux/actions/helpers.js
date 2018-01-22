@@ -48,7 +48,7 @@ export function updatedTopicName(id, data, state){
     }
   )
 
-  return updatedTopicNameState
+  return { state: updatedTopicNameState, topic: updatedTopicNameState.topics[index] }
 }
 
 export function updatedSubtopicName(topicId, subtopicId, token, data, state){
