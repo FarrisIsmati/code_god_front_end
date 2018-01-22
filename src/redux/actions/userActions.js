@@ -164,8 +164,10 @@ function updateSubtopicNameState(state) {
 export function updateSubtopicName(topicId, subtopicId, token, data, state) {
   return function(dispatch){
     const updatedSubtopicNameState = updatedSubtopicName(topicId, subtopicId, token, data, state)
-    dispatch(updateSubtopicNameState(updatedSubtopicNameState))
     axios.put('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token, {text: data, value: 'name'})
+    .then(()=>{
+      dispatch(updateSubtopicNameState(updatedSubtopicNameState))
+    })
   }
 }
 

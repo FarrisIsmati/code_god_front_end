@@ -25,9 +25,15 @@ class Subtopics extends Component {
     this.onChangeHandle = this.onChangeHandle.bind(this)
   }
 
-  submitSubtopicName(e) {
+  submitSubtopicName(e, subtopicId) {
     e.preventDefault()
-    console.log(this.state.subtopicTitle)
+    this.props.updateSubtopicName(
+      this.props.topicId,
+      subtopicId,
+      localStorage.userToken,
+      this.state.subtopicTitle,
+      this.props.user
+    )
   }
 
   onChangeHandle(e) {
@@ -43,7 +49,7 @@ class Subtopics extends Component {
       return(
         <div className="subtopic-holder" key={i}>
           <ModalForm toggle={this.state.showModalEdit} title={'Edit Subtopic Name'} dispatch={()=>this.toggleModal()}>
-            <form onSubmit={(e) => {this.submitSubtopicName(e); this.toggleModal()}}>
+            <form onSubmit={(e) => {this.submitSubtopicName(e, subtopic._id); this.toggleModal()}}>
               <FormControl onChange={(e)=>this.onChangeHandle(e)}
                   type="text"
                   placeholder={subtopic.name}

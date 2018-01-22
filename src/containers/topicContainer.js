@@ -10,6 +10,7 @@ import {
          updateTopicName,
          addSubtopic,
          deleteSubtopic,
+         updateSubtopicName,
          updateQuill,
 
        }                          from "../redux/actions/userActions"
@@ -94,13 +95,16 @@ const mapDispatchToProps = (dispatch) => {
     deleteSubtopic: (topicId, subtopicId, token, state) => {
       dispatch(deleteSubtopic(topicId, subtopicId, token, state))
     },
+    updateSubtopicName: (topicId, subtopicId, token, data, state) => {
+      dispatch(updateSubtopicName(topicId, subtopicId, token, data, state))
+    },
     updateQuill: (topicId, subtopicId, data, state) => {
       dispatch(updateQuill(topicId, subtopicId, data, state))
     }
   }
 }
 
-  const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
+const Toolbar = connect(mapStateToProps, mapDispatchToProps)(toolbar)
 const Topic = connect(mapStateToProps, mapDispatchToProps)(topic)
 
 export default connect(mapStateToProps)(TopicContainer)

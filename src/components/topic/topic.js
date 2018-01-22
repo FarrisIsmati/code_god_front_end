@@ -11,9 +11,10 @@ import '../../stylesheets/topic.css'
 const Topic = ({
   updateQuill,
   updateTopicName,
+  updateSubtopicName,
   deleteSubtopic,
   addSubtopic,
-  toggleTopic, 
+  toggleTopic,
   topic,
   topicIndex,
   state
@@ -38,6 +39,7 @@ const Topic = ({
         topicIndex={topicIndex}
       />
       <Subtopics
+        updateSubtopicName={updateSubtopicName}
         topicIndex={topicIndex}
         updateQuill={updateQuill}
         deleteSubtopic={deleteSubtopic}
