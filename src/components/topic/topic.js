@@ -2,7 +2,7 @@
 import React              from 'react'
 
 //COMPONENTS
-import Subtopics          from './subtopic.js'
+import Subtopic           from './subtopic.js'
 import TopicHeader        from './topicHeader.js'
 
 import '../../stylesheets/flex.css'
@@ -28,6 +28,23 @@ const Topic = ({
     }
   }
 
+  const Subtopics = topic.subtopics.map((subtopic, i) => {
+    return(
+      <Subtopic
+        key={i}
+        subtopicIndex={i}
+        subtopic={subtopic}
+        updateSubtopicName={updateSubtopicName}
+        topicIndex={topicIndex}
+        updateQuill={updateQuill}
+        deleteSubtopic={deleteSubtopic}
+        subtopics={topic.subtopics}
+        user={state}
+        topicId={topic._id}
+      />
+    )
+  })
+
   return(
     <div className="topic-holder" style={{backgroundColor: backgroundColor()}}>
       <TopicHeader
@@ -38,15 +55,9 @@ const Topic = ({
         state={state}
         topicIndex={topicIndex}
       />
-      <Subtopics
-        updateSubtopicName={updateSubtopicName}
-        topicIndex={topicIndex}
-        updateQuill={updateQuill}
-        deleteSubtopic={deleteSubtopic}
-        subtopics={topic.subtopics}
-        user={state}
-        topicId={topic._id}
-      />
+      <div className="subtopics-holder">
+        {Subtopics}
+      </div>
     </div>
   )
 }
