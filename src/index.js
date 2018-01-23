@@ -14,17 +14,12 @@ import rootReducer          from './redux/reducers/rootReducer'
 import './stylesheets/index.css'
 import './stylesheets/highlightjs.css'
 
-const loggerMiddleware = createLogger()
-
 const store = createStore(
   rootReducer,
   applyMiddleware(
-    thunkMiddleware,
-    // loggerMiddleware
+    thunkMiddleware
   )
 )
-
-// store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
   <Root className="full-height" store={store} />,

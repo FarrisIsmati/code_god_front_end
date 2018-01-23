@@ -5,7 +5,12 @@
   margin: 0 2% 0 2%;
 }
 
-#username-display {
+.nav-container h1 {
+  font-size: 2.5em;
+}
+
+.nav-container span {
+  font-size: .8em;
 }
 
 #logout-btn {

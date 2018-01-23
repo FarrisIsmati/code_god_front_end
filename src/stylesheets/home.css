@@ -1,5 +1,5 @@
 .grid-home{
   height: 100%;
   display: grid;
-  grid-template-rows: 10% auto;
+  grid-template-rows: 8% auto;
 }

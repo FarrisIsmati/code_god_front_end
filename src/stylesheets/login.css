@@ -13,12 +13,12 @@
 }
 
 .login-button {
-  font-size: 3em;
+  font-size: 3.2em;
   background-color: #f9f8fd;
   color: #3d3d3f;
   border-radius: 8px;
   font-family: 'Roboto', sans-serif;
-  padding: 5px 20px 5px 20px;
+  padding: 10px 20px 10px 20px;
   transition: background-color 0.2s ease;
   transition: color 0.2s ease;
 }

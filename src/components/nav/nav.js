@@ -10,8 +10,8 @@ const Nav = ({user, logout}) => (
     <div className="flex nav-container-right">
       {
         user.activeUser ?
-        <h2 id="logout-btn" onClick={logout}>logOut(<span id="username">{user.username}</span>)</h2>:
-        <h2 id="logout-btn" onClick={logout}>{"logOut"}</h2>
+        <h1 id="logout-btn" onClick={logout}>logOut(<span id="username">{user.username}</span>)</h1>:
+        <h1 id="logout-btn" onClick={logout}>{"logOut"}</h1>
       }
     </div>
   </div>
