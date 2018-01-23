@@ -67,7 +67,7 @@ function deletingTopicState(deletedTopicState) {
 export function deleteTopic(id, token, state) {
   return function(dispatch){
     const deletedTopicState = deleteTopicState(state, id)
-    axios.delete('http://localhost:3001/data/user/topic/' + id + '/' + token)
+    axios.delete('https://studyjs-ga.herokuapp.com/data/user/topic/' + id + '/' + token)
     .then(()=>{
       dispatch(deletingTopicState(deletedTopicState))
     })
@@ -85,7 +85,7 @@ function updateTopicNameState(state) {
 export function updateTopicName(id, token, data, state) {
   return function(dispatch){
     const updatedTopicNameState = updatedTopicName(id, data, state)
-    axios.put('http://localhost:3001/data/user/topic/' + id + '/' + token, updatedTopicNameState.topic)
+    axios.put('https://studyjs-ga.herokuapp.com/data/user/topic/' + id + '/' + token, updatedTopicNameState.topic)
     .then(()=>{
       dispatch(updateTopicNameState(updatedTopicNameState.state))
     })
@@ -103,7 +103,7 @@ function toggleTopicState(topicShowState) {
 export function toggleTopic(id, token, state) {
   return function(dispatch){
     const topicShowState = modifyTopic(state, id)
-    axios.put('http://localhost:3001/data/user/topics/' + token, topicShowState.topics)
+    axios.put('https://studyjs-ga.herokuapp.com/data/user/topics/' + token, topicShowState.topics)
     .then(()=>{
       dispatch(toggleTopicState(topicShowState))
     })
@@ -146,7 +146,7 @@ function deleteSubtopicState(topicId, subtopicId, token, state) {
 
 export function deleteSubtopic(topicId, subtopicId, token, state) {
   return function(dispatch){
-    axios.delete('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token)
+    axios.delete('https://studyjs-ga.herokuapp.com/data/user/topic/' + topicId + '/' + subtopicId + '/' + token)
     .then(()=>{
       dispatch(deleteSubtopicState(topicId, subtopicId, token, state))
     })
@@ -164,7 +164,7 @@ function updateSubtopicNameState(state) {
 export function updateSubtopicName(topicId, subtopicId, token, data, state) {
   return function(dispatch){
     const updatedSubtopicNameState = updatedSubtopicName(topicId, subtopicId, token, data, state)
-    axios.put('http://localhost:3001/data/user/topic/' + topicId + '/' + subtopicId + '/' + token, {text: data, value: 'name'})
+    axios.put('https://studyjs-ga.herokuapp.com/data/user/topic/' + topicId + '/' + subtopicId + '/' + token, {text: data, value: 'name'})
     .then(()=>{
       dispatch(updateSubtopicNameState(updatedSubtopicNameState))
     })
