@@ -16,6 +16,10 @@
   padding: 0;
 }
 
+.subtopics-holder {
+  overflow: auto;
+}
+
 .subtopic-holder .trash-glyph{
   color: rgba(0,0,0,0);
   transition: color .2s ease;
