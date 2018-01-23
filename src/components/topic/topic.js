@@ -11,6 +11,9 @@ import '../../stylesheets/topic.css'
 class Topic extends Component {
   constructor(props){
     super(props)
+    this.state = {}
+
+    this.setSubtopicHeight = this.setSubtopicHeight.bind(this)
     this.backgroundColor = this.backgroundColor.bind(this)
   }
 
@@ -20,6 +23,18 @@ class Topic extends Component {
     } else {
       return "#C1C1C1"
     }
+  }
+
+  setSubtopicHeight() {
+    let topicHeight = this.refs.topicHolder.offsetHeight
+    let topicHeaderHeight = this.refs.topicHolder.childNodes[0].offsetHeight
+    let subtopicsHeight = topicHeight - topicHeaderHeight
+    this.setState({subtopicsHeight: subtopicsHeight})
+  }
+
+  componentDidMount() {
+    this.setSubtopicHeight()
+    window.addEventListener("resize", this.setSubtopicHeight)
   }
 
   render() {
@@ -41,7 +56,7 @@ class Topic extends Component {
     })
 
     return(
-      <div className="topic-holder" style={{backgroundColor: this.backgroundColor()}}>
+      <div ref="topicHolder" className="topic-holder" style={{backgroundColor: this.backgroundColor()}}>
         <TopicHeader
           updateTopicName={this.props.updateTopicName}
           addSubtopic={this.props.addSubtopic}
@@ -50,10 +65,17 @@ class Topic extends Component {
           state={this.props.state}
           topicIndex={this.props.topicIndex}
         />
-      <div className="subtopics-holder">
+      {
+        this.state.subtopicsHeight ?
+        <div ref="subtopicsHolder" style={{height: this.state.subtopicsHeight + 'px'}} className="subtopics-holder">
+          {Subtopics}
+        </div>:
+        <div ref="subtopicsHolder" className="subtopics-holder">
           {Subtopics}
         </div>
-      </div>
+      }
+
+    </div>
     )
   }
 }
