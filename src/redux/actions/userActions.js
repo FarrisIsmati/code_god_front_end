@@ -47,7 +47,7 @@ function addTopicState(json) {
 
 export function addTopic(name, token) {
   return function(dispatch){
-    axios.post('http://localhost:3001/data/user/topic/' + token,{
+    axios.post('https://studyjs-ga.herokuapp.com/data/user/topic/' + token,{
       "name": name
     })
     .then((json)=>{
@@ -123,11 +123,11 @@ function addSubtopicState(user) {
 export function addSubtopic(name, id, token) {
   console.log(id)
   return function(dispatch){
-    axios.post('http://localhost:3001/data/user/topic/' + id + '/' + token,{
+    axios.post('https://studyjs-ga.herokuapp.com/data/user/topic/' + id + '/' + token,{
       "name": name
     })
     .then(()=>{
-      axios.get('http://localhost:3001/data/user/' + token)
+      axios.get('https://studyjs-ga.herokuapp.com/data/user/' + token)
       .then((user)=>{
         dispatch(addSubtopicState(user))
       })
@@ -215,7 +215,7 @@ function invalidateUser() {
 function fetchUserData(token) {
   return function (dispatch) {
     dispatch(requestUser(token))
-    return fetch(`http://localhost:3001/data/user/` + token)
+    return fetch(`https://studyjs-ga.herokuapp.com/data/user/` + token)
       .then(
         response => {
           dispatch(invalidateUser())
