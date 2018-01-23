@@ -47,7 +47,7 @@ class Quill extends Component {
 
     return (
       <div className="quill-holder">
-        <ReactQuill ref="quill" theme="bubble" modules={modules} value={this.props.subtopicText} onChange={this.handleChange}/>
+        <ReactQuill ref="quill" theme="snow" modules={modules} value={this.props.subtopicText} onChange={this.handleChange}/>
         {
           this.state.saved ?
           <Glyphicon id="saved-btn" glyph="glyphicon glyphicon-floppy-saved" /> :
