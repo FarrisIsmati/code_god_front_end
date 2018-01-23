@@ -24,8 +24,8 @@ class Quill extends Component {
 
   //Save State
   saveState() {
-    axios.put('https://studyjs-ga.herokuapp.com/data/user/topic/' + this.props.topicId + '/' + this.props.subtopicId + '/' + localStorage.userToken, {
-      text: this.props.subtopicText
+    axios.put('http://localhost:3001/data/user/topic/' + this.props.topicId + '/' + this.props.subtopicId + '/' + localStorage.userToken, {
+      text: this.props.subtopicText, value: 'data'
     })
     .then((res)=>{
       console.log(res)
@@ -39,10 +39,9 @@ class Quill extends Component {
       syntax: true,
       toolbar: [
         [{ header: [1, 2, false] }],
-        ['bold', 'italic', 'underline'],
         [{ 'color': [] }, { 'background': [] }],
         [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-        ['blockquote', 'code-block']
+        ['code-block']
       ],
     }
 

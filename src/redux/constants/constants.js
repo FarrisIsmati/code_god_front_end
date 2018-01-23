@@ -1,12 +1,20 @@
+
 //User
 export const REQUEST_USER = 'REQUEST_USER'
 export const RECEIVE_USER = 'RECIEVE_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
+export const INVALIDATE_USER = 'INVALIDATE_USER'
 
-//Data
+//Topics
+export const ADD_TOPIC = 'ADD_TOPIC'
 export const DELETE_TOPIC = 'DELTE_TOPIC'
 export const TOGGLE_TOPIC = 'TOGGLE_TOPIC'
-export const ADD_TOPIC = 'ADD_TOPIC'
+export const UPDATE_TOPIC_NAME = 'UPDATE_TOPIC_NAME'
+
+//Subtopics
 export const ADD_SUBTOPIC = 'ADD_SUBTOPIC'
-export const UPDATE_QUILL = 'UPDATE_QUILL'
 export const DELETE_SUBTOPIC = 'DELETE_SUBTOPIC'
+export const UPDATE_SUBTOPIC_NAME = 'UPDATE_SUBTOPIC_NAME'
+
+//Quill
+export const UPDATE_QUILL = 'UPDATE_QUILL'

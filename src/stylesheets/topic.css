@@ -3,10 +3,6 @@
   background-color: #AFAFAF;
 }
 
-.topic-holder {
-
-}
-
 .topic-header-holder {
   background-color: red;
   padding: 10px 5% 10px 5%;
@@ -35,8 +31,16 @@
   transition: color .2s ease;
 }
 
-.topic-header-holder:hover .glyphicon{
+.topic-header-holder:hover .glyphicon {
   color: #3d3d3f;
   visibility: visible;
   transition: color .3s ease;
+}
+
+@media (max-width: 768px) {
+  .topic-header-holder .glyphicon {
+    font-size: 1.2em;
+    color: #3d3d3f !important;
+    visibility: visible !important;
+  }
 }
