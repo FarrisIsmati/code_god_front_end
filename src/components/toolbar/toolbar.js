@@ -19,7 +19,6 @@ import '../../stylesheets/toolbar.css'
 class Toolbar extends  Component {
     constructor(props) {
       super(props)
-
       this.state = {
         "showModalAdd": false,
         "showModalCreate": false
